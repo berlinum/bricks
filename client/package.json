@@ -1,5 +1,5 @@
 {
-  "name": "bricks",
+  "name": "bricks-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public -o build/storybook"
   },
   "browserslist": {
     "production": [
@@ -40,7 +40,5 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18"
   },
-  
-    "proxy": "http://localhost:8080"
-  
+  "proxy": "http://localhost:8080"
 }
