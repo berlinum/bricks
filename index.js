@@ -4,9 +4,12 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const auth = require('./lib/routes/auth');
 
 const port = process.env.PORT || 8080;
 const app = express();
+
+app.use('api/auth', auth);
 
 async function start() {
   try {
