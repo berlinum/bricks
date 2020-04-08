@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "heroku-prebuild": "cd client && npm ci",
     "client": "cd client && npm start",
     "build": "cd client && npm run build build-storybook",
     "storybook": "cd client && npm run storybook",
