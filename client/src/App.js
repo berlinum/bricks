@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Input from './components/Input';
+import Button from './components/Button';
 
 const Card = styled.div`
   display: flex;
@@ -15,8 +16,10 @@ const Card = styled.div`
 function App() {
   return (
     <Card>
+      <Input placeholder="Name" />
       <Input placeholder="Email" />
       <Input placeholder="Password" />
+      <Button>Sign Up</Button>
     </Card>
   );
 }
