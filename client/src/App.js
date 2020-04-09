@@ -16,9 +16,9 @@ const Card = styled.div`
 function App() {
   return (
     <Card>
-      <Input placeholder="Name" />
-      <Input placeholder="Email" />
-      <Input placeholder="Password" />
+      <Input placeholder="Name" id="name" type="text" />
+      <Input placeholder="Email" id="email" type="text" />
+      <Input placeholder="Password" id="password" type="password" />
       <Button>Sign Up</Button>
     </Card>
   );
