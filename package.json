@@ -45,6 +45,7 @@
     "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.5.5",
