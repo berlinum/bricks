@@ -9,7 +9,10 @@ const auth = require('./lib/routes/auth');
 const port = process.env.PORT || 8080;
 const app = express();
 
-app.use('api/auth', auth);
+// Parse application/json for all requests
+app.use(express.json());
+
+app.use('/api/auth', auth);
 
 async function start() {
   try {
