@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import CollectionPage from './pages/CollectionPage';
-import AuthPage from './pages/AuthPage';
+import LoginPage from './pages/LoginPage';
 
-const UseRoutes = (isAuthenticated) => {
+const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
@@ -17,11 +17,11 @@ const UseRoutes = (isAuthenticated) => {
   return (
     <Switch>
       <Route path="/" exact>
-        <AuthPage />
+        <LoginPage />
       </Route>
       <Redirect to="/" />
     </Switch>
   );
 };
 
-export default UseRoutes;
+export default useRoutes;
