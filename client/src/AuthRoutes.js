@@ -2,8 +2,9 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import CollectionPage from './pages/CollectionPage';
 import LoginPage from './pages/LoginPage';
+import PropTypes from 'prop-types';
 
-const useRoutes = (isAuthenticated) => {
+const AuthRoutes = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return (
       <Switch>
@@ -24,4 +25,8 @@ const useRoutes = (isAuthenticated) => {
   );
 };
 
-export default useRoutes;
+AuthRoutes.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+export default AuthRoutes;

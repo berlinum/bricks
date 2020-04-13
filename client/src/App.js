@@ -1,10 +1,13 @@
 import React from 'react';
-import useRoutes from './routes';
+import AuthRoutes from './AuthRoutes';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
-  const routes = useRoutes(true);
-  return <Router>{routes}</Router>;
+  return (
+    <Router>
+      <AuthRoutes isAuthenticated={true} />
+    </Router>
+  );
 }
 
 export default App;
