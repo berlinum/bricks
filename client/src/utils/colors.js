@@ -1,6 +1,7 @@
 const colors = {
   textPrimary: '#37373B',
   textSecondary: '#757577',
+  textButtons: '#F3F3F3',
   textInfo: '#AEAEB2',
   textInfoDark: '#B7A496',
   textActiv: '#FFAE00',
