@@ -22,7 +22,7 @@ const InputContainer = styled.div`
   align-items: center;
   opacity: 0;
   animation: ${display} 1s ease-in;
-  animation-delay: 5s;
+  animation-delay: 4s;
   animation-fill-mode: forwards;
 `;
 

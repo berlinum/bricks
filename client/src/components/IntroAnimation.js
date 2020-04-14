@@ -12,7 +12,7 @@ const IntroLogo = styled.div`
   position: relative;
   bottom: -50px;
   opacity: 0;
-  animation: ${bounceDown} 4s linear 1;
+  animation: ${bounceDown} 3s linear 1;
   animation-delay: 2s;
   animation-fill-mode: forwards;
 `;
@@ -24,7 +24,7 @@ const IntroName = styled.span`
   color: ${colors.textActiv};
   bottom: -50px;
   opacity: 0;
-  animation: ${bounceUp} 4s linear 1;
+  animation: ${bounceUp} 3s linear 1;
   animation-delay: 2s;
   animation-fill-mode: forwards;
 `;
