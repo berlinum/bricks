@@ -10,11 +10,13 @@ export default {
 };
 
 const ButtonDanger = styled(Button)`
+  margin-left: 20px;
   background-color: ${colors.bgDanger};
 `;
 
-export const Text = () => <Button onClick={action('clicked')}>Sign Up</Button>;
-
-export const Danger = () => (
-  <ButtonDanger onClick={action('clicked')}>Log Out</ButtonDanger>
+export const SubmitButton = () => (
+  <>
+    <Button onClick={action('clicked')}>Sign Up</Button>
+    <ButtonDanger onClick={action('clicked')}>Log Out</ButtonDanger>
+  </>
 );
