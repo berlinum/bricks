@@ -9,14 +9,18 @@ export default {
   component: Button,
 };
 
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
 const ButtonDanger = styled(Button)`
-  margin-left: 20px;
   background-color: ${colors.bgDanger};
 `;
 
 export const SubmitButton = () => (
-  <>
+  <ButtonContainer>
     <Button onClick={action('clicked')}>Sign Up</Button>
     <ButtonDanger onClick={action('clicked')}>Log Out</ButtonDanger>
-  </>
+  </ButtonContainer>
 );

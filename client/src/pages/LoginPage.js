@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import colors from '../utils/colors';
+import IntroAnimation from '../components/IntroAnimation';
+import { display } from '../utils/animations';
 
-const Card = styled.div`
+const IntroContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +14,16 @@ const Card = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${colors.bgDark};
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  opacity: 0;
+  animation: ${display} 1s ease-in;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
 `;
 
 const LoginPage = () => {
@@ -28,21 +40,24 @@ const LoginPage = () => {
   const loginHandler = async () => {};
 
   return (
-    <Card>
-      <Input
-        placeholder="Email"
-        name="email"
-        type="text"
-        onChange={changeHandler}
-      />
-      <Input
-        placeholder="Password"
-        name="password"
-        type="password"
-        onChange={changeHandler}
-      />
-      <Button onClick={loginHandler}>Log In</Button>
-    </Card>
+    <IntroContainer>
+      <IntroAnimation />
+      <InputContainer>
+        <Input
+          placeholder="Email"
+          name="email"
+          type="text"
+          onChange={changeHandler}
+        />
+        <Input
+          placeholder="Password"
+          name="password"
+          type="password"
+          onChange={changeHandler}
+        />
+        <Button onClick={loginHandler}>Log In</Button>
+      </InputContainer>
+    </IntroContainer>
   );
 };
 
