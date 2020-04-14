@@ -6,6 +6,13 @@ function GlobalStyles() {
     <Global
       styles={css`
         @font-face {
+          font-family: 'Ornitons Heavy Regular';
+          src: url('/fonts/ornitons-serial-heavy-regular.ttf');
+          font-weight: 900;
+          font-style: normal;
+        }
+
+        @font-face {
           font-family: 'SF Pro Display Regular';
           src: url('/fonts/SF-Pro-Display-Regular.otf');
           font-weight: 400;
