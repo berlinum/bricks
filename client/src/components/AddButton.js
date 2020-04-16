@@ -13,8 +13,7 @@ export const AddButton = styled.button`
   background-position: center;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
   &:focus {
-    outline: ${colors.systemAction};
-    box-shadow: 0 0 3px 2px ${colors.systemAction};
+    outline: none;
     transform: rotate(45deg);
     transition: 0.5s;
   }

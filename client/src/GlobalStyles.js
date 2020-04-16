@@ -81,6 +81,7 @@ function GlobalStyles() {
           height: 100vh;
           justify-content: center;
           align-items: center;
+          box-sizing: border-box;
         }
       `}
     />

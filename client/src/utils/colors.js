@@ -5,6 +5,8 @@ const colors = {
   textInfo: '#AEAEB2',
   textInfoDark: '#B7A496',
   textActiv: '#FFAE00',
+  textInactiv: '#747474',
+  iconInactiv: '#999999',
   systemAction: '#235ABF',
   bgLight: '#F9F9F9',
   bgDark: '#1D1D1B',
