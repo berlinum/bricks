@@ -13,8 +13,8 @@ const AddButton = styled.button`
   background-image: url(${Plus});
   background-repeat: no-repeat;
   background-position: center;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-  transform: rotate(${(props) => (props.active ? 45 : 0)}deg);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);
+  transform: rotate(${(props) => (props.active ? 135 : 0)}deg);
   transition: 0.5s;
   &:focus {
     outline: none;
