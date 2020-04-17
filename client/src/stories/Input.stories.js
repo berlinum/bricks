@@ -11,7 +11,7 @@ export default {
   decorators: [withKnobs],
 };
 
-const Card = styled.div`
+const InputContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 375px;
@@ -22,7 +22,7 @@ const Card = styled.div`
 `;
 
 export const LoginForm = () => (
-  <Card>
+  <InputContainer>
     <Input
       size="large"
       placeholder="Email"
@@ -36,5 +36,5 @@ export const LoginForm = () => (
       placeholder="Password"
       onChange={action('user input')}
     />
-  </Card>
+  </InputContainer>
 );
