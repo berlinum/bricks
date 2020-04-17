@@ -18,8 +18,6 @@ const AddButton = styled.button`
   transition: 0.5s;
   &:focus {
     outline: none;
-    transform: rotate(45deg);
-    transition: 0.5s;
   }
 `;
 
