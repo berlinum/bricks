@@ -1,14 +1,14 @@
 import React from 'react';
-import { Card } from '../components/Card';
+import { CardItem } from '../components/CardItem';
 import Img from '../assets/img/Bus.jpg';
 
 export default {
   title: 'Card',
-  component: Card,
+  component: CardItem,
 };
 
 export const ItemCard = () => (
-  <Card
+  <CardItem
     details={{
       id: 123,
       title: 'London Bus',
