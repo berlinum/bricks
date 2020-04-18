@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
 
-const Nav = styled.ul`
+const Container = styled.ul`
   display: flex;
   height: 83px;
   width: 100vw;
@@ -35,7 +35,7 @@ const Label = styled.span`
 
 const NavBottom = ({ links, value, onTabClick }) => {
   return (
-    <Nav>
+    <Container>
       {links.map((link) => (
         <NavItem
           key={link.label}
@@ -46,7 +46,7 @@ const NavBottom = ({ links, value, onTabClick }) => {
           <Label>{link.label}</Label>
         </NavItem>
       ))}
-    </Nav>
+    </Container>
   );
 };
 
