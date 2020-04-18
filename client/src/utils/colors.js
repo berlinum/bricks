@@ -10,7 +10,6 @@ const colors = {
   systemAction: '#235ABF',
   bgLight: '#F9F9F9',
   bgDark: '#1D1D1B',
-  bgSecondary: '#F2F2F7',
   bgWhite: '#FFF',
   bgDanger: '#F22C2C',
   iconMute: '#707070',

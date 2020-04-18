@@ -12,12 +12,16 @@ const Container = styled.article`
   border-radius: 5px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
 `;
-const Image = styled.img`
+const ImageBox = styled.div`
   display: flex;
-  object-fit: cover;
+  justify-content: center;
+  align-items: center;
   height: 243px;
-  padding: 0;
   border-radius: 5px 5px 0 0;
+`;
+const Image = styled.img`
+  object-fit: cover;
+  height: 233px;
 `;
 
 const InfoBox = styled.div`
@@ -30,7 +34,7 @@ const InfoBox = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: SF Pro Rounded Medium;
+  font-family: SF Pro Rounded Regular;
   font-size: 35px;
   font-weight: 500;
   margin: 0 0 4px 18px;
@@ -47,22 +51,27 @@ const InfoItem = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  margin: 6px 0 0 0;
   font-family: SF Pro Rounded Regular;
-  color: ${colors.textSecondary};
 `;
 
 const InfoData = styled.span`
+  color: ${colors.textSecondary};
   font-size: 20px;
 `;
 
 const InfoLabel = styled.span`
+  color: ${colors.textInfo};
+
   font-size: 12px;
 `;
 
-export const Card = ({ details }) => {
+export const CardItem = ({ details }) => {
   return (
     <Container>
-      <Image src={details.img} />
+      <ImageBox>
+        <Image src={details.img} />
+      </ImageBox>
       <InfoBox key={details.id}>
         <Title>{details.title}</Title>
         <Info>
@@ -84,6 +93,6 @@ export const Card = ({ details }) => {
   );
 };
 
-Card.propTypes = {
+CardItem.propTypes = {
   details: PropTypes.object,
 };
