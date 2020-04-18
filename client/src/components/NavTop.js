@@ -5,35 +5,34 @@ import colors from '../utils/colors';
 
 const Nav = styled.ul`
   display: flex;
-  height: 83px;
+  height: 46px;
   width: 100vw;
-  list-style: none;
   justify-content: center;
   margin: 0;
   padding: 0;
-  background: ${colors.bgLight};
+  background: ${colors.textActiv};
 `;
 
-const NavItem = styled.li`
+const NavItem = styled.button`
   display: flex;
-  flex-flow: column nowrap;
   flex: 1;
   justify-content: center;
   align-items: center;
-  min-width: 93px;
-  max-width: 120px;
-  padding: 6px 12px 8px;
+  min-width: 158px;
+  max-width: 200px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  outline: none;
   cursor: pointer;
-  font-family: 'SF Pro Display Medium';
-  font-size: 12px;
-  color: ${(props) => (props.active ? colors.textActiv : colors.textInactiv)};
+  font-family: 'SF Pro Display Semibold';
+  font-size: 16px;
+  color: ${(props) => (props.active ? colors.bgDark : colors.bgWhite)};
+  background-color: ${(props) =>
+    props.active ? colors.bgLight : colors.textActiv};
 `;
 
-const Label = styled.span`
-  margin-top: 4px;
-`;
-
-const NavBottom = ({ links, value, onTabClick }) => {
+const NavTop = ({ links, value, onTabClick }) => {
   return (
     <Nav>
       {links.map((link) => (
@@ -42,18 +41,17 @@ const NavBottom = ({ links, value, onTabClick }) => {
           active={value === link.label}
           onClick={() => onTabClick(link.label)}
         >
-          <link.Icon active={value === link.label} />
-          <Label>{link.label}</Label>
+          <span>{link.label}</span>
         </NavItem>
       ))}
     </Nav>
   );
 };
 
-NavBottom.propTypes = {
+NavTop.propTypes = {
   links: PropTypes.array,
   value: PropTypes.string,
   onTabClick: PropTypes.func,
 };
 
-export default NavBottom;
+export default NavTop;
