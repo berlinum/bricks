@@ -7,7 +7,7 @@ export default {
   component: NavBottom,
 };
 
-export const NavigationBottom = () => {
+export const Default = () => {
   const [active, setActive] = useState('Collection');
 
   return (
