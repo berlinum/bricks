@@ -13,6 +13,13 @@ function GlobalStyles() {
         }
 
         @font-face {
+          font-family: 'SF Pro Display Thin';
+          src: url('/fonts/SF-Pro-Display-Thin.otf');
+          font-weight: 100;
+          font-style: normal;
+        }
+
+        @font-face {
           font-family: 'SF Pro Display Regular';
           src: url('/fonts/SF-Pro-Display-Regular.otf');
           font-weight: 400;
