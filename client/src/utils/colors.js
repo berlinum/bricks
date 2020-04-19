@@ -7,12 +7,13 @@ const colors = {
   textActiv: '#FFAE00',
   textInactiv: '#747474',
   iconInactiv: '#999999',
-  systemAction: '#235ABF',
+  systemAction: '#007AFF',
   bgLight: '#F9F9F9',
   bgDark: '#1D1D1B',
   bgSecondary: '#F2F2F7',
   bgWhite: '#FFF',
   bgDanger: '#F22C2C',
+  bgAction: '#235ABF',
   iconMute: '#707070',
 };
 
