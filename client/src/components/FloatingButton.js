@@ -9,7 +9,7 @@ const AddButton = styled.button`
   height: 70px;
   border: none;
   border-radius: 50%;
-  background-color: ${colors.systemAction};
+  background-color: ${colors.bgAction};
   background-image: url(${Plus});
   background-repeat: no-repeat;
   background-position: center;
