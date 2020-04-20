@@ -4,7 +4,34 @@ import styled from '@emotion/styled';
 import colors from '../utils/colors';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import LogoImg from '../assets/icons/logo.svg';
 
+const LogoBox = styled.div`
+  display: flex;
+  align-items: baseline;
+  margin: 0 0 60px 0;
+`;
+
+const Logo = styled.div`
+  width: 44px;
+  height: 44px;
+  margin: 7px;
+  background-image: url(${LogoImg});
+`;
+
+const Name = styled.span`
+  margin: 7px;
+  font-family: 'Ornitons Heavy Regular';
+  font-size: 60px;
+  color: ${colors.textActiv};
+`;
+
+const Title = styled.span`
+  margin: 0 0 45px 0;
+  font-family: SF Pro Display Regular;
+  font-size: 23px;
+  color: ${colors.textInfoDark};
+`;
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,7 +42,11 @@ const Card = styled.div`
   background-color: ${colors.bgDark};
 `;
 
-const Container = styled.div`
+const SignUpButton = styled(Button)`
+  margin-top: 52px;
+`;
+
+const ContainerLink = styled.div`
   display: flex;
   align-items: center;
   font-family: SF Pro Display Regular;
@@ -59,6 +90,11 @@ const RegisterPage = () => {
 
   return (
     <Card>
+      <LogoBox>
+        <Logo />
+        <Name>BRICKS</Name>
+      </LogoBox>
+      <Title>Create your account</Title>
       <Input
         placeholder="Name"
         name="name"
@@ -77,13 +113,19 @@ const RegisterPage = () => {
         type="password"
         onChange={changeHandler}
       />
-      <Button onClick={registerHandler}>Sign Up</Button>
-      <Container>
+      <Input
+        placeholder="Confirm password"
+        name="passwordConfirmation"
+        type="password"
+        onChange={changeHandler}
+      />
+      <SignUpButton onClick={registerHandler}>Sign Up</SignUpButton>
+      <ContainerLink>
         <Info>Already have an account?</Info>
         <Link to="/login">
           <Login>Log in</Login>
         </Link>
-      </Container>
+      </ContainerLink>
     </Card>
   );
 };
