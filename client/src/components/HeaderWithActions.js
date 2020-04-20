@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { HeaderBox, TtileBox } from './Header';
 import { Arrow, Delete } from '../assets/icons/Actions';
 
-const TitelWithAction = styled(TtileBox)`
+const TitleWithAction = styled(TtileBox)`
   display: flex;
   margin-left: 0;
   flex-grow: 1;
