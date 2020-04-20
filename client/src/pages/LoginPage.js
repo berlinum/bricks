@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -24,6 +25,26 @@ const InputContainer = styled.div`
   animation: ${display} 1s ease-in;
   animation-delay: 4s;
   animation-fill-mode: forwards;
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  font-family: SF Pro Display Regular;
+  font-size: 18px;
+`;
+
+const Info = styled.span`
+  color: ${colors.textInfoDark};
+  margin: 5px;
+`;
+
+const Register = styled.a`
+  color: ${colors.textActiv};
+  margin: 5px;
+  &:link {
+    text-decoration: none;
+  }
 `;
 
 const LoginPage = () => {
@@ -56,6 +77,12 @@ const LoginPage = () => {
           onChange={changeHandler}
         />
         <Button onClick={loginHandler}>Log In</Button>
+        <Container>
+          <Info>Don&apos;t have an account?</Info>
+          <Link to="/register">
+            <Register>Register now</Register>
+          </Link>
+        </Container>
       </InputContainer>
     </IntroContainer>
   );
