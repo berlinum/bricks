@@ -36,7 +36,7 @@ export const HeaderWithActions = () => (
       <Arrow />
       <Label>Back</Label>
     </Action>
-    <TitelWithAction>Collection</TitelWithAction>
+    <TitleWithAction>Collection</TitleWithAction>
     <Action onClick={action('clicked')}>
       <Delete />
     </Action>
