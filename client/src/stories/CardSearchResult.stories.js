@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import CardSearchResult from '../components/CardSearchResult';
 import Img from '../assets/img/Bus.jpg';
 
@@ -21,6 +20,5 @@ export const SearchResult = () => (
       year: 2017,
       img: Img,
     }}
-    onClick={action('clicked')}
   />
 );
