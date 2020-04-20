@@ -7,7 +7,6 @@ import colors from '../utils/colors';
 const IntroLogo = styled.div`
   width: 100px;
   height: 100px;
-  fill: green;
   background-image: url(${Logo});
   position: relative;
   bottom: -50px;

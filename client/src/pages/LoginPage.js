@@ -27,6 +27,10 @@ const InputContainer = styled.div`
   animation-fill-mode: forwards;
 `;
 
+const LogInButton = styled(Button)`
+  margin-top: 52px;
+`;
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -39,7 +43,7 @@ const Info = styled.span`
   margin: 5px;
 `;
 
-const Register = styled.a`
+const RegisterLink = styled.a`
   color: ${colors.textActiv};
   margin: 5px;
 `;
@@ -73,11 +77,11 @@ const LoginPage = () => {
           type="password"
           onChange={changeHandler}
         />
-        <Button onClick={loginHandler}>Log In</Button>
+        <LogInButton onClick={loginHandler}>Log In</LogInButton>
         <Container>
           <Info>Don&apos;t have an account?</Info>
           <Link to="/register">
-            <Register>Register now</Register>
+            <RegisterLink>Register now</RegisterLink>
           </Link>
         </Container>
       </InputContainer>
