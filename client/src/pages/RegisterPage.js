@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+import colors from '../utils/colors';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
@@ -10,10 +12,27 @@ const Card = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: #1d1d1b;
+  background-color: ${colors.bgDark};
 `;
 
-const AuthPage = () => {
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  font-family: SF Pro Display Regular;
+  font-size: 18px;
+`;
+
+const Info = styled.span`
+  color: ${colors.textInfoDark};
+  margin: 5px;
+`;
+
+const Login = styled.a`
+  color: ${colors.textActiv};
+  margin: 5px;
+`;
+
+const RegisterPage = () => {
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -59,8 +78,14 @@ const AuthPage = () => {
         onChange={changeHandler}
       />
       <Button onClick={registerHandler}>Sign Up</Button>
+      <Container>
+        <Info>Already have an account?</Info>
+        <Link to="/login">
+          <Login>Log in</Login>
+        </Link>
+      </Container>
     </Card>
   );
 };
 
-export default AuthPage;
+export default RegisterPage;

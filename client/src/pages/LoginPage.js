@@ -42,9 +42,6 @@ const Info = styled.span`
 const Register = styled.a`
   color: ${colors.textActiv};
   margin: 5px;
-  &:link {
-    text-decoration: none;
-  }
 `;
 
 const LoginPage = () => {

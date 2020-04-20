@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import CollectionPage from './pages/CollectionPage';
 import LoginPage from './pages/LoginPage';
-import AuthPage from './pages/AuthPage';
+import RegisterPage from './pages/RegisterPage';
 import BuildItPage from './pages/BuildItPage';
 import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
@@ -34,7 +34,7 @@ const AuthRoutes = ({ isAuthenticated }) => {
         <LoginPage />
       </Route>
       <Route path="/register">
-        <AuthPage />
+        <RegisterPage />
       </Route>
       <Redirect to="/" />
     </Switch>
