@@ -50,7 +50,7 @@ const ProfileInfo = ({ counter }) => {
   return (
     <Card key={counter.id}>
       <Box>
-        <Title>Set</Title>
+        <Title>Sets</Title>
         <Counter>{counter.sets}</Counter>
       </Box>
       <Divider />
