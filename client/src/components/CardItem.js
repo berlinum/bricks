@@ -36,7 +36,6 @@ const InfoBox = styled.div`
 const Title = styled.h1`
   font-family: SF Pro Rounded Regular;
   font-size: 35px;
-  font-weight: 500;
   margin: 0 0 4px 18px;
   color: ${colors.textPrimary};
 `;
@@ -96,3 +95,5 @@ export const CardItem = ({ details }) => {
 CardItem.propTypes = {
   details: PropTypes.object,
 };
+
+export default CardItem;

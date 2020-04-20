@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardItem } from '../components/CardItem';
+import CardItem from '../components/CardItem';
 import Img from '../assets/img/Bus.jpg';
 
 export default {
