@@ -68,6 +68,7 @@ const RegisterPage = () => {
     name: '',
     email: '',
     password: '',
+    confPassword: '',
   });
 
   const changeHandler = (event) => {
@@ -75,16 +76,21 @@ const RegisterPage = () => {
   };
 
   const registerHandler = async () => {
-    try {
-      fetch(`/api/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...form }),
-      }).then((response) => response.json());
-    } catch (error) {
-      console.error(error);
+    const { name, email, password, confPassword } = form;
+    if (password !== confPassword) {
+      alert("Passwords don't match");
+    } else {
+      try {
+        fetch(`/api/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, password }),
+        }).then((response) => response.json());
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -115,7 +121,7 @@ const RegisterPage = () => {
       />
       <Input
         placeholder="Confirm password"
-        name="passwordConfirmation"
+        name="confPassword"
         type="password"
         onChange={changeHandler}
       />
