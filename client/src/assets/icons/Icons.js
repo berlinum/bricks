@@ -4,7 +4,7 @@ import colors from '../../utils/colors';
 import PropTypes from 'prop-types';
 
 const SVG = styled.svg`
-  fill: ${(props) => (props.active ? colors.textActiv : colors.iconInactiv)};
+  fill: ${(props) => (props.active ? colors.textActive : colors.iconInactive)};
 `;
 
 export const Heart = ({ active }) => {

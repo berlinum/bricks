@@ -10,7 +10,7 @@ const Nav = styled.ul`
   justify-content: center;
   margin: 0;
   padding: 0;
-  background: ${colors.textActiv};
+  background: ${colors.textActive};
 `;
 
 const NavItem = styled.button`
@@ -29,7 +29,7 @@ const NavItem = styled.button`
   font-size: 16px;
   color: ${(props) => (props.active ? colors.bgDark : colors.bgWhite)};
   background-color: ${(props) =>
-    props.active ? colors.bgLight : colors.textActiv};
+    props.active ? colors.bgLight : colors.textActive};
 `;
 
 const NavTop = ({ links, value, onTabClick }) => {

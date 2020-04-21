@@ -12,7 +12,7 @@ export const HeaderBox = styled.div`
 export const TtileBox = styled.div`
   font-family: SF Pro Display Semibold;
   font-size: 30px;
-  color: ${colors.textActiv};
+  color: ${colors.textActive};
   margin: 44px 0 0 30px;
 `;
 

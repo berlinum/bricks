@@ -37,7 +37,7 @@ const Counter = styled.h3`
   margin: 0;
   font-family: SF Pro Rounded Semibold;
   font-size: 50px;
-  color: ${colors.textActiv};
+  color: ${colors.textActive};
   text-align: center;
 `;
 const Divider = styled.div`

@@ -7,7 +7,6 @@ import colors from '../utils/colors';
 const IntroLogo = styled.div`
   width: 100px;
   height: 100px;
-  fill: green;
   background-image: url(${Logo});
   position: relative;
   bottom: -50px;
@@ -21,7 +20,7 @@ const IntroName = styled.span`
   position: relative;
   font-family: 'Ornitons Heavy Regular';
   font-size: 70px;
-  color: ${colors.textActiv};
+  color: ${colors.textActive};
   bottom: -50px;
   opacity: 0;
   animation: ${bounceUp} 3s linear 1;

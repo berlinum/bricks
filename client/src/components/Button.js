@@ -5,7 +5,7 @@ const Button = styled.button`
   width: 280px;
   height: 46px;
   margin: 20px 0;
-  background-color: ${colors.textActiv};
+  background-color: ${colors.textActive};
   border: none;
   border-radius: 23px;
   font-family: 'SF Pro Text Bold';
