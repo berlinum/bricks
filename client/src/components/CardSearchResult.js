@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
+import Button from '../components/Button';
 
 const Container = styled.article`
   display: flex;
   flex-flow: column nowrap;
-  width: 330px;
-  height: 350px;
+  min-width: 330px;
+  height: 566px;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
@@ -17,6 +18,7 @@ const ImageBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 243px;
+  width: 100%;
   border-radius: 5px 5px 0 0;
 `;
 const Image = styled.img`
@@ -27,13 +29,15 @@ const Image = styled.img`
 const InfoBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  height: 107px;
+  justify-content: space-around;
+  height: 324px;
+  width: 100%;
   border-radius: 0 0 5px 5px;
   background-color: ${colors.bgSecondary};
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
+  align-self: flex-start;
   font-family: SF Pro Rounded Regular;
   font-size: 35px;
   margin: 0 0 4px 18px;
@@ -42,7 +46,6 @@ const Title = styled.h1`
 
 const Info = styled.div`
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-around;
 `;
 
@@ -56,16 +59,20 @@ const InfoItem = styled.div`
 
 const InfoData = styled.span`
   color: ${colors.textSecondary};
-  font-size: 20px;
+  font-size: 28px;
 `;
 
 const InfoLabel = styled.span`
   color: ${colors.textInfo};
-
-  font-size: 12px;
+  font-size: 18px;
 `;
 
-export const CardItem = ({ details }) => {
+const AddButton = styled(Button)`
+  align-self: center;
+  width: 230px;
+`;
+
+export const CardSearchResult = ({ details }) => {
   return (
     <Container>
       <ImageBox>
@@ -75,25 +82,40 @@ export const CardItem = ({ details }) => {
         <Title>{details.title}</Title>
         <Info>
           <InfoItem>
-            <InfoData>{details.pieces}</InfoData>
-            <InfoLabel>Pieces</InfoLabel>
-          </InfoItem>
-          <InfoItem>
-            <InfoData>{details.item}</InfoData>
             <InfoLabel>#Item</InfoLabel>
+            <InfoData>{details.item}</InfoData>
           </InfoItem>
           <InfoItem>
-            <InfoData>{details.year}</InfoData>
+            <InfoLabel>Theme</InfoLabel>
+            <InfoData>{details.theme}</InfoData>
+          </InfoItem>
+          <InfoItem>
             <InfoLabel>Year</InfoLabel>
+            <InfoData>{details.year}</InfoData>
           </InfoItem>
         </Info>
+        <Info>
+          <InfoItem>
+            <InfoLabel>Pieces</InfoLabel>
+            <InfoData>{details.pieces}</InfoData>
+          </InfoItem>
+          <InfoItem>
+            <InfoLabel>Price</InfoLabel>
+            <InfoData>{details.price}€</InfoData>
+          </InfoItem>
+          <InfoItem>
+            <InfoLabel>Age</InfoLabel>
+            <InfoData>{details.age}</InfoData>
+          </InfoItem>
+        </Info>
+        <AddButton>Add</AddButton>
       </InfoBox>
     </Container>
   );
 };
 
-CardItem.propTypes = {
+CardSearchResult.propTypes = {
   details: PropTypes.object,
 };
 
-export default CardItem;
+export default CardSearchResult;
