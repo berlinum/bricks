@@ -26,7 +26,7 @@ const NavItem = styled.li`
   cursor: pointer;
   font-family: 'SF Pro Display Medium';
   font-size: 12px;
-  color: ${(props) => (props.active ? colors.textActiv : colors.textInactiv)};
+  color: ${(props) => (props.active ? colors.textActive : colors.textInactive)};
 `;
 
 const Label = styled.span`

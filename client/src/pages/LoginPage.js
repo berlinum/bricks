@@ -44,7 +44,7 @@ const Info = styled.span`
 `;
 
 const RegisterLink = styled.a`
-  color: ${colors.textActiv};
+  color: ${colors.textActive};
   margin: 5px;
 `;
 

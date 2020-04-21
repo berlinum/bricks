@@ -23,7 +23,7 @@ const Name = styled.span`
   margin: 7px;
   font-family: 'Ornitons Heavy Regular';
   font-size: 60px;
-  color: ${colors.textActiv};
+  color: ${colors.textActive};
 `;
 
 const Title = styled.span`
@@ -59,7 +59,7 @@ const Info = styled.span`
 `;
 
 const Login = styled.a`
-  color: ${colors.textActiv};
+  color: ${colors.textActive};
   margin: 5px;
 `;
 
