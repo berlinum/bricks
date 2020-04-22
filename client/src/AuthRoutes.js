@@ -8,7 +8,7 @@ import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
 import PropTypes from 'prop-types';
 
-const AuthRoutes = ({ isAuthenticated }) => {
+export const authRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
@@ -41,8 +41,6 @@ const AuthRoutes = ({ isAuthenticated }) => {
   );
 };
 
-AuthRoutes.propTypes = {
+authRoutes.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
-
-export default AuthRoutes;
