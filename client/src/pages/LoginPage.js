@@ -50,7 +50,6 @@ const RegisterLink = styled.a`
 
 const LoginPage = () => {
   const [form, setForm] = useState({
-    name: '',
     email: '',
     password: '',
   });
