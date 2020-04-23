@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import CollectionPage from './pages/CollectionPage';
 import LoginPage from './pages/LoginPage';
@@ -7,25 +7,68 @@ import BuildItPage from './pages/BuildItPage';
 import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
 import PropTypes from 'prop-types';
+import NavButtom from './components/NavBottom';
+import { Heart, Home, Rocket, Profile } from './assets/icons/Icons';
+import styled from '@emotion/styled';
+import colors from './utils/colors';
 
-const AuthRoutes = ({ isAuthenticated }) => {
+const Container = styled.div`
+  display: flex;
+  flex-flow: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${colors.bgLight};
+`;
+
+const NavigationBottom = () => {
+  const [active, setActive] = useState('Collection');
+
+  return (
+    <NavButtom
+      links={[
+        { label: 'Collection', Icon: Home },
+        {
+          label: 'Build It!',
+          Icon: Rocket,
+        },
+        {
+          label: 'Wishlist',
+          Icon: Heart,
+        },
+        {
+          label: 'Profile',
+          Icon: Profile,
+        },
+      ]}
+      value={active}
+      onTabClick={(page) => setActive(page)}
+    />
+  );
+};
+
+export const AuthRoutes = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return (
-      <Switch>
-        <Route path="/collection" exact>
-          <CollectionPage />
-        </Route>
-        <Route path="/buildit">
-          <BuildItPage />
-        </Route>
-        <Route path="/wishlist">
-          <WishlistPage />
-        </Route>
-        <Route path="/profile">
-          <ProfilePage />
-        </Route>
-        <Redirect to="/collection" />
-      </Switch>
+      <Container>
+        <Switch>
+          <Route path="/collection" exact>
+            <CollectionPage />
+          </Route>
+          <Route path="/buildit">
+            <BuildItPage />
+          </Route>
+          <Route path="/wishlist">
+            <WishlistPage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
+          </Route>
+          <Route path="*">
+            <Redirect to="/collection" />
+          </Route>
+        </Switch>
+        <NavigationBottom />
+      </Container>
     );
   }
   return (
@@ -36,7 +79,9 @@ const AuthRoutes = ({ isAuthenticated }) => {
       <Route path="/register">
         <RegisterPage />
       </Route>
-      <Redirect to="/" />
+      <Route path="*">
+        <Redirect to="/" />
+      </Route>
     </Switch>
   );
 };
@@ -44,5 +89,3 @@ const AuthRoutes = ({ isAuthenticated }) => {
 AuthRoutes.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
-
-export default AuthRoutes;

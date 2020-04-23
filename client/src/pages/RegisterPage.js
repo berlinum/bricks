@@ -5,6 +5,7 @@ import colors from '../utils/colors';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import LogoImg from '../assets/icons/logo.svg';
+import { useHttp } from '../hooks/http.hook';
 
 const LogoBox = styled.div`
   display: flex;
@@ -58,12 +59,13 @@ const Info = styled.span`
   margin: 5px;
 `;
 
-const Login = styled.a`
+const Login = styled(Link)`
   color: ${colors.textActive};
   margin: 5px;
 `;
 
 const RegisterPage = () => {
+  const { loading, request } = useHttp();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -81,13 +83,12 @@ const RegisterPage = () => {
       alert("Passwords don't match");
     } else {
       try {
-        fetch(`/api/auth/register`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, password }),
-        }).then((response) => response.json());
+        const data = await request('/api/auth/register', 'POST', {
+          name,
+          email,
+          password,
+        });
+        alert(data.message);
       } catch (error) {
         console.error(error);
       }
@@ -125,12 +126,12 @@ const RegisterPage = () => {
         type="password"
         onChange={changeHandler}
       />
-      <SignUpButton onClick={registerHandler}>Sign Up</SignUpButton>
+      <SignUpButton onClick={registerHandler} disabled={loading}>
+        Sign Up
+      </SignUpButton>
       <ContainerLink>
         <Info>Already have an account?</Info>
-        <Link to="/login">
-          <Login>Log in</Login>
-        </Link>
+        <Login to="/login">Log in</Login>
       </ContainerLink>
     </Card>
   );
