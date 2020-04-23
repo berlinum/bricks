@@ -3,12 +3,12 @@ import GlobalStyles from './GlobalStyles';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/AuthContext';
-import { authRoutes } from './authRoutes';
+import { AuthRoutes } from './AuthRoutes';
 
 function App() {
   const { token, userId, login, logout } = useAuth();
   const isAuthenticated = !!token;
-  const routes = authRoutes(isAuthenticated);
+
   return (
     <AuthContext.Provider
       value={{
@@ -21,7 +21,7 @@ function App() {
     >
       <Router>
         <GlobalStyles />
-        {routes}
+        <AuthRoutes isAuthenticated={isAuthenticated} />
       </Router>
     </AuthContext.Provider>
   );

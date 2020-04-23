@@ -45,7 +45,7 @@ const Info = styled.span`
   margin: 5px;
 `;
 
-const RegisterLink = styled.a`
+const RegisterLink = styled(Link)`
   color: ${colors.textActive};
   margin: 5px;
 `;
@@ -92,9 +92,7 @@ const LoginPage = () => {
         </LogInButton>
         <Container>
           <Info>Don&apos;t have an account?</Info>
-          <Link to="/register">
-            <RegisterLink>Register now</RegisterLink>
-          </Link>
+          <RegisterLink to="/register">Register now</RegisterLink>
         </Container>
       </InputContainer>
     </IntroContainer>
