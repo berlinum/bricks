@@ -14,7 +14,7 @@ const Container = styled.div`
 
 export const HeaderDefault = () => (
   <Container>
-    <Header />
+    <Header title="Collection" />
   </Container>
 );
 
