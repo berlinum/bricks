@@ -26,18 +26,21 @@ const NavigationBottom = () => {
   return (
     <NavButtom
       links={[
-        { label: 'Collection', Icon: Home },
+        { label: 'Collection', Icon: Home, navLink: '/collection' },
         {
           label: 'Build It!',
           Icon: Rocket,
+          navLink: '/buildit',
         },
         {
           label: 'Wishlist',
           Icon: Heart,
+          navLink: '/wishlist',
         },
         {
           label: 'Profile',
           Icon: Profile,
+          navLink: '/profile',
         },
       ]}
       value={active}
@@ -63,9 +66,7 @@ export const AuthRoutes = ({ isAuthenticated }) => {
           <Route path="/profile">
             <ProfilePage />
           </Route>
-          <Route path="*">
-            <Redirect to="/collection" />
-          </Route>
+          <Redirect to="/collection" />
         </Switch>
         <NavigationBottom />
       </Container>
@@ -79,9 +80,7 @@ export const AuthRoutes = ({ isAuthenticated }) => {
       <Route path="/register">
         <RegisterPage />
       </Route>
-      <Route path="*">
-        <Redirect to="/" />
-      </Route>
+      <Redirect to="/" />
     </Switch>
   );
 };
