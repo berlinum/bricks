@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
 
-const Nav = styled.ul`
+const Nav = styled.nav`
   display: flex;
   height: 46px;
   width: 100vw;
   justify-content: center;
-  margin: 0;
-  padding: 0;
   background: ${colors.textActive};
+`;
+
+const NavItemContainer = styled.div`
+  display: flex;
+  padding: 0 25px 0 25px;
 `;
 
 const NavItem = styled.button`
@@ -21,6 +24,7 @@ const NavItem = styled.button`
   min-width: 158px;
   max-width: 200px;
   margin: 8px 0;
+  padding: 5px 0;
   border: none;
   border-radius: 6px;
   outline: none;
@@ -35,15 +39,17 @@ const NavItem = styled.button`
 const NavTop = ({ links, value, onTabClick }) => {
   return (
     <Nav>
-      {links.map((link) => (
-        <NavItem
-          key={link.label}
-          active={value === link.label}
-          onClick={() => onTabClick(link.label)}
-        >
-          <span>{link.label}</span>
-        </NavItem>
-      ))}
+      <NavItemContainer>
+        {links.map((link) => (
+          <NavItem
+            key={link.label}
+            active={value === link.label}
+            onClick={() => onTabClick(link.label)}
+          >
+            <span>{link.label}</span>
+          </NavItem>
+        ))}
+      </NavItemContainer>
     </Nav>
   );
 };
