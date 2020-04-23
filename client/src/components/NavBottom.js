@@ -43,7 +43,7 @@ const NavBottom = ({ links, value, onTabClick }) => {
         <NavItem
           to={link.navLink}
           key={link.label}
-          active={value.toString(value === link.label)}
+          active={value === link.label}
           onClick={() => onTabClick(link.label)}
         >
           <link.Icon active={value === link.label} />
