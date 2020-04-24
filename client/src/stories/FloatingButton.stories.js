@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FloatingButton } from '../components/FloatingButton';
+import FloatingButton from '../components/FloatingButton';
 
 export default {
   title: 'Button',
