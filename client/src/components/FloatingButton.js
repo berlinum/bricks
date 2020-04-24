@@ -5,6 +5,7 @@ import Plus from '../assets/icons/whitePlus.svg';
 import colors from '../utils/colors';
 
 const AddButton = styled.button`
+  position: absolute;
   width: 70px;
   height: 70px;
   border: none;
@@ -19,9 +20,11 @@ const AddButton = styled.button`
   &:focus {
     outline: none;
   }
+  bottom: 100px;
+  right: 13px;
 `;
 
-export const FloatingButton = ({ value, onButtonClick }) => (
+const FloatingButton = ({ value, onButtonClick }) => (
   <AddButton active={value} onClick={() => onButtonClick()} />
 );
 
@@ -29,3 +32,5 @@ FloatingButton.propTypes = {
   value: PropTypes.bool,
   onButtonClick: PropTypes.func,
 };
+
+export default FloatingButton;

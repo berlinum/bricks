@@ -2,10 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
 import { action } from '@storybook/addon-actions';
-import { HeaderBox, TtileBox } from './Header';
+import { HeaderBox, TitleBox } from './Header';
 import { Arrow, Delete } from '../assets/icons/Actions';
 
-const TitleWithAction = styled(TtileBox)`
+const TitleWithAction = styled(TitleBox)`
   display: flex;
   margin-left: 0;
   flex-grow: 1;

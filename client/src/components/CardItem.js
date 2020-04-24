@@ -7,6 +7,7 @@ const Container = styled.article`
   display: flex;
   flex-flow: column nowrap;
   width: 330px;
+  margin: 15px;
   height: 350px;
   border: none;
   border-radius: 5px;
@@ -17,6 +18,7 @@ const ImageBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 243px;
+  background-color: ${colors.bgWhite};
   border-radius: 5px 5px 0 0;
 `;
 const Image = styled.img`

@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 import CardItem from '../components/CardItem';
 import Img from '../assets/img/Bus.jpg';
 import NavTop from '../components/NavTop';
+import FloatingButton from '../components/FloatingButton';
+import { NavLink } from 'react-router-dom';
 
 const MainContainer = styled.main`
   display: flex;
@@ -14,22 +16,34 @@ const MainContainer = styled.main`
   overflow: scroll;
 `;
 
-const CollectionPage = () => {
+const CollectionSetsPage = () => {
   const [active, setActive] = useState('My Sets');
+  const [add, setAdd] = useState(false);
+
   return (
     <>
       <Header title="Collection" />
       <NavTop
         links={[
-          { label: 'My Sets' },
+          { label: 'My Sets', navLink: '/collection/mysets' },
           {
             label: 'My Parts',
+            navLink: '/collection/myparts',
           },
         ]}
         value={active}
         onTabClick={(page) => setActive(page)}
       />
       <MainContainer>
+        <NavLink to="/search">
+          <FloatingButton
+            to="/search"
+            value={add}
+            onButtonClick={() => {
+              setAdd(!add);
+            }}
+          />
+        </NavLink>
         <CardItem
           details={{
             id: 123,
@@ -75,4 +89,4 @@ const CollectionPage = () => {
   );
 };
 
-export default CollectionPage;
+export default CollectionSetsPage;

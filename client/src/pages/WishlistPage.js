@@ -1,10 +1,24 @@
 import React from 'react';
+import styled from '@emotion/styled';
+import Header from '../components/Header';
+
+const MainContainer = styled.main`
+  display: flex;
+  flex-flow: row wrap;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+`;
 
 const WishlistPage = () => {
   return (
-    <div>
-      <h1>Wishlist Page</h1>
-    </div>
+    <>
+      <Header title="Wishlist" />
+      <MainContainer>
+        <h1>Wishlist</h1>
+      </MainContainer>
+    </>
   );
 };
 

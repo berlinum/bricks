@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import CollectionPage from './pages/CollectionPage';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import colors from './utils/colors';
+import NavButtom from './components/NavBottom';
+import { Heart, Home, Rocket, Profile } from './assets/icons/Icons';
+import CollectionSetsPage from './pages/CollectionSetsPage';
+import CollectionPartsPage from './pages/CollectionPartsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import BuildItPage from './pages/BuildItPage';
 import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
-import PropTypes from 'prop-types';
-import NavButtom from './components/NavBottom';
-import { Heart, Home, Rocket, Profile } from './assets/icons/Icons';
-import styled from '@emotion/styled';
-import colors from './utils/colors';
+import SearchPage from './pages/SearchPage';
 
 const Container = styled.div`
   display: flex;
@@ -26,18 +28,21 @@ const NavigationBottom = () => {
   return (
     <NavButtom
       links={[
-        { label: 'Collection', Icon: Home },
+        { label: 'Collection', Icon: Home, navLink: '/collection/mysets' },
         {
           label: 'Build It!',
           Icon: Rocket,
+          navLink: '/buildit',
         },
         {
           label: 'Wishlist',
           Icon: Heart,
+          navLink: '/wishlist',
         },
         {
           label: 'Profile',
           Icon: Profile,
+          navLink: '/profile',
         },
       ]}
       value={active}
@@ -51,8 +56,14 @@ export const AuthRoutes = ({ isAuthenticated }) => {
     return (
       <Container>
         <Switch>
-          <Route path="/collection" exact>
-            <CollectionPage />
+          <Route path="/collection/mysets" exact>
+            <CollectionSetsPage />
+          </Route>
+          <Route path="/collection/myparts">
+            <CollectionPartsPage />
+          </Route>
+          <Route path="/search">
+            <SearchPage />
           </Route>
           <Route path="/buildit">
             <BuildItPage />
@@ -63,9 +74,7 @@ export const AuthRoutes = ({ isAuthenticated }) => {
           <Route path="/profile">
             <ProfilePage />
           </Route>
-          <Route path="*">
-            <Redirect to="/collection" />
-          </Route>
+          <Redirect to="/collection/mysets" />
         </Switch>
         <NavigationBottom />
       </Container>
@@ -79,9 +88,7 @@ export const AuthRoutes = ({ isAuthenticated }) => {
       <Route path="/register">
         <RegisterPage />
       </Route>
-      <Route path="*">
-        <Redirect to="/" />
-      </Route>
+      <Redirect to="/" />
     </Switch>
   );
 };
