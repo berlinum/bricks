@@ -8,6 +8,7 @@ const Container = styled.article`
   flex-flow: column nowrap;
   width: 154px;
   height: 350px;
+  margin: 10px;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
@@ -65,7 +66,7 @@ const InfoLabel = styled.span`
   color: ${colors.textInfo};
 `;
 
-export const CardBrick = ({ details }) => {
+const CardBrick = ({ details }) => {
   return (
     <Container>
       <ImageBox>
@@ -95,3 +96,5 @@ export const CardBrick = ({ details }) => {
 CardBrick.propTypes = {
   details: PropTypes.object,
 };
+
+export default CardBrick;

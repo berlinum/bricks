@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardBrick } from '../components/CardBrick';
+import CardBrick from '../components/CardBrick';
 import Img from '../assets/img/Brick.jpeg';
 
 export default {
