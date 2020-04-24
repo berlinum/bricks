@@ -24,6 +24,7 @@ app.get('*', (request, response) => {
 async function start() {
   try {
     await mongoose.connect(process.env.DB_URL, {
+      dbName: process.env.DB_NAME,
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
