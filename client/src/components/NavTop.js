@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
+import { NavLink } from 'react-router-dom';
 
 const Nav = styled.nav`
   display: flex;
@@ -16,7 +17,7 @@ const NavItemContainer = styled.div`
   padding: 0 25px 0 25px;
 `;
 
-const NavItem = styled.button`
+const NavItem = styled(NavLink)`
   display: flex;
   flex: 1;
   justify-content: center;
@@ -25,6 +26,7 @@ const NavItem = styled.button`
   max-width: 200px;
   margin: 8px 0;
   padding: 5px 0;
+  text-decoration: none;
   border: none;
   border-radius: 6px;
   outline: none;
@@ -42,6 +44,7 @@ const NavTop = ({ links, value, onTabClick }) => {
       <NavItemContainer>
         {links.map((link) => (
           <NavItem
+            to={link.navLink}
             key={link.label}
             active={value === link.label}
             onClick={() => onTabClick(link.label)}
