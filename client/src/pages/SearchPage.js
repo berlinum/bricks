@@ -1,29 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import styled from '@emotion/styled';
-import colors from '../utils/colors';
+import { useQuery } from 'react-query';
+import { getSets } from '../api/rebrick';
+import CardItem from '../components/CardItem';
+import { Loading } from '../assets/icons/Loading';
+import useThrottling from '../hooks/useThrottling.hook';
+import SearchInput from '../components/SearchInput';
+import FloatingButton from '../components/FloatingButton';
+import { NavLink } from 'react-router-dom';
 
 const MainContainer = styled.main`
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   flex-grow: 1;
   align-items: center;
+  justify-content: center;
   overflow: scroll;
 `;
 
-const Input = styled.input`
-  width: 250px;
-  font-size: 30px;
-  margin: 20px;
-  background-color: ${colors.textActive};
-`;
-
 const SearchPage = () => {
+  const [value, setValue] = useState('');
+  const [cancel, setCancel] = useState(true);
+  const throttledValue = useThrottling(value, 700);
+
+  const changeHandler = (event) => {
+    setValue(event.target.value);
+  };
+
+  const { status, data, error } = useQuery(throttledValue, getSets);
+  if (status === 'loading')
+    return (
+      <>
+        <Header title="New Set" />
+        <SearchInput value={value} onChange={changeHandler} />
+        <MainContainer>
+          <Loading />
+          <FloatingButton
+            value={cancel}
+            onButtonClick={() => {
+              setCancel(!cancel);
+            }}
+          />
+        </MainContainer>
+      </>
+    );
+  if (status === 'error') return <div>Oops! :( {error}</div>;
+  if (!data)
+    return (
+      <>
+        <Header title="New Set" />
+        <SearchInput value={value} onChange={changeHandler} />
+        <MainContainer>
+          <NavLink to="/collection/mysets">
+            <FloatingButton
+              value={cancel}
+              onButtonClick={() => {
+                setCancel(!cancel);
+              }}
+            />
+          </NavLink>
+        </MainContainer>
+      </>
+    );
+
   return (
     <>
-      <Header title="Search" />
+      <Header title="New Set" />
+      <SearchInput value={value} onChange={changeHandler} />
       <MainContainer>
-        <Input type="text" />
+        <NavLink to="/collection/mysets">
+          <FloatingButton
+            value={cancel}
+            onButtonClick={() => {
+              setCancel(!cancel);
+            }}
+          />
+        </NavLink>
+        {data.results.map((sets) => (
+          <CardItem
+            key={sets.set_num}
+            details={{
+              title: sets.name,
+              pieces: sets.num_parts,
+              item: sets.set_num,
+              year: sets.year,
+              img: sets.set_img_url,
+            }}
+          />
+        ))}
       </MainContainer>
     </>
   );
