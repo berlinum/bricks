@@ -47,7 +47,6 @@ const SearchInput = ({ value, onChange }) => {
 SearchInput.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
-  searchResults: PropTypes.array,
 };
 
 export default SearchInput;
