@@ -31,7 +31,7 @@ const SearchPage = () => {
 
   const getSets = async () => {
     try {
-      const data = await request(`/api/search/set?q=${throttledValue}`);
+      const data = await request(`/api/search/sets?q=${throttledValue}`);
       return data;
     } catch (error) {
       console.error(error);
