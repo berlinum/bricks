@@ -7,8 +7,8 @@ import Button from '../components/Button';
 const Container = styled.article`
   display: flex;
   flex-flow: column nowrap;
-  min-width: 330px;
-  height: 566px;
+  width: 330px;
+  margin: 15px;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
@@ -18,43 +18,47 @@ const ImageBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 243px;
-  width: 100%;
+  background-color: ${colors.bgWhite};
   border-radius: 5px 5px 0 0;
 `;
 const Image = styled.img`
-  object-fit: cover;
+  object-fit: contain;
   height: 233px;
+  width: 330px;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
-  height: 324px;
-  width: 100%;
+  padding-bottom: 20px;
   border-radius: 0 0 5px 5px;
   background-color: ${colors.bgSecondary};
 `;
 
 const Title = styled.h2`
-  align-self: flex-start;
   font-family: SF Pro Rounded Regular;
   font-size: 35px;
-  margin: 0 0 4px 18px;
+  margin: 10px 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: ${colors.textPrimary};
 `;
 
 const Info = styled.div`
   display: flex;
+  padding-bottom: 10px;
   justify-content: space-around;
 `;
 
 const InfoItem = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
-  margin: 6px 0 0 0;
+  flex: 1 1 0;
+  margin: 6px 3px 0 3px;
   font-family: SF Pro Rounded Regular;
+  text-align: center;
 `;
 
 const InfoData = styled.span`
@@ -69,7 +73,7 @@ const InfoLabel = styled.span`
 
 const AddButton = styled(Button)`
   align-self: center;
-  width: 230px;
+  margin: 10px 20px;
 `;
 
 export const CardSearchResult = ({ details }) => {
@@ -82,30 +86,16 @@ export const CardSearchResult = ({ details }) => {
         <Title>{details.title}</Title>
         <Info>
           <InfoItem>
-            <InfoLabel>#Item</InfoLabel>
-            <InfoData>{details.item}</InfoData>
-          </InfoItem>
-          <InfoItem>
-            <InfoLabel>Theme</InfoLabel>
-            <InfoData>{details.theme}</InfoData>
-          </InfoItem>
-          <InfoItem>
-            <InfoLabel>Year</InfoLabel>
-            <InfoData>{details.year}</InfoData>
-          </InfoItem>
-        </Info>
-        <Info>
-          <InfoItem>
             <InfoLabel>Pieces</InfoLabel>
             <InfoData>{details.pieces}</InfoData>
           </InfoItem>
           <InfoItem>
-            <InfoLabel>Price</InfoLabel>
-            <InfoData>{details.price}€</InfoData>
+            <InfoLabel>#Item</InfoLabel>
+            <InfoData>{details.item}</InfoData>
           </InfoItem>
           <InfoItem>
-            <InfoLabel>Age</InfoLabel>
-            <InfoData>{details.age}</InfoData>
+            <InfoLabel>Year</InfoLabel>
+            <InfoData>{details.year}</InfoData>
           </InfoItem>
         </Info>
         <AddButton>Add</AddButton>

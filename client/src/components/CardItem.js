@@ -36,7 +36,7 @@ const InfoBox = styled.div`
   background-color: ${colors.bgSecondary};
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-family: SF Pro Rounded Regular;
   font-size: 35px;
   margin: 0 18px 4px 18px;

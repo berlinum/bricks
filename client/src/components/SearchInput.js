@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const Container = styled.div`
   display: flex;
-  height: 46px;
+  flex: 0 0 46px;
   width: 100vw;
   justify-content: center;
   background: ${colors.textActive};

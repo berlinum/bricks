@@ -4,7 +4,7 @@ import colors from '../utils/colors';
 const Button = styled.button`
   width: 280px;
   height: 46px;
-  margin: 20px 0;
+  margin: 20px 20px;
   background-color: ${colors.textActive};
   border: none;
   border-radius: 23px;
