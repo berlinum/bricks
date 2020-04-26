@@ -31,16 +31,14 @@ const Input = styled.input`
 
 const SearchInput = ({ value, onChange }) => {
   return (
-    <div>
-      <Container>
-        <Input
-          type="search"
-          placeholder="Search by name or set number"
-          value={value}
-          onChange={onChange}
-        ></Input>
-      </Container>
-    </div>
+    <Container>
+      <Input
+        type="search"
+        placeholder="Search by name or set number"
+        value={value}
+        onChange={onChange}
+      ></Input>
+    </Container>
   );
 };
 
