@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import styled from '@emotion/styled';
 import { useQuery } from 'react-query';
-import CardItem from '../components/CardItem';
+import CardSearchResult from '../components/CardSearchResult';
 import { Loading } from '../assets/icons/Loading';
 import useThrottling from '../hooks/useThrottling.hook';
 import SearchInput from '../components/SearchInput';
@@ -88,13 +88,14 @@ const SearchPage = () => {
           />
         </NavLink>
         {data.results.map((sets) => (
-          <CardItem
+          <CardSearchResult
             key={sets.set_num}
             details={{
+              id: sets.set_num,
               title: sets.name,
-              pieces: sets.num_parts,
               item: sets.set_num,
               year: sets.year,
+              pieces: sets.num_parts,
               img: sets.set_img_url,
             }}
           />
