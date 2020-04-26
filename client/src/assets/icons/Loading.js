@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import styled from '@emotion/styled';
 
@@ -17,11 +16,11 @@ export const Loading = () => (
       cx="50"
       cy="50"
       r="32"
-      stroke-width="8"
+      strokeWidth="8"
       stroke="#1d1d1b"
-      stroke-dasharray="50.26548245743669 50.26548245743669"
+      strokeDasharray="50.26548245743669 50.26548245743669"
       fill="none"
-      stroke-linecap="round"
+      strokeLinecap="round"
       transform="rotate(5.99292 50 50)"
     >
       <animateTransform
@@ -37,12 +36,12 @@ export const Loading = () => (
       cx="50"
       cy="50"
       r="23"
-      stroke-width="8"
+      strokeWidth="8"
       stroke="#ffae00"
-      stroke-dasharray="36.12831551628262 36.12831551628262"
-      stroke-dashoffset="36.12831551628262"
+      strokeDasharray="36.12831551628262 36.12831551628262"
+      strokeDashoffset="36.12831551628262"
       fill="none"
-      stroke-linecap="round"
+      strokeLinecap="round"
       transform="rotate(-5.99292 50 50)"
     >
       <animateTransform
