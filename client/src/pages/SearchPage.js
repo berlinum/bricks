@@ -29,6 +29,14 @@ const SearchPage = () => {
     setValue(event.target.value);
   };
 
+  const handleClick = async (set) => {
+    try {
+      await request('/api/collection/mysets/add', 'POST', set);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const getSets = async () => {
     try {
       const data = await request(`/api/search/sets?q=${throttledValue}`);
@@ -87,17 +95,18 @@ const SearchPage = () => {
             }}
           />
         </NavLink>
-        {data.results.map((sets) => (
+        {data.results.map((set) => (
           <CardSearchResult
-            key={sets.set_num}
+            key={set.set_num}
             details={{
-              id: sets.set_num,
-              title: sets.name,
-              item: sets.set_num,
-              year: sets.year,
-              pieces: sets.num_parts,
-              img: sets.set_img_url,
+              id: set.set_num,
+              title: set.name,
+              item: set.set_num,
+              year: set.year,
+              pieces: set.num_parts,
+              img: set.set_img_url,
             }}
+            onAddClick={() => handleClick(set)}
           />
         ))}
       </MainContainer>

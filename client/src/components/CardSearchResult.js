@@ -76,7 +76,7 @@ const AddButton = styled(Button)`
   margin: 10px 20px;
 `;
 
-export const CardSearchResult = ({ details }) => {
+export const CardSearchResult = ({ details, onAddClick }) => {
   return (
     <Container>
       <ImageBox>
@@ -98,7 +98,7 @@ export const CardSearchResult = ({ details }) => {
             <InfoData>{details.year}</InfoData>
           </InfoItem>
         </Info>
-        <AddButton>Add</AddButton>
+        <AddButton onClick={() => onAddClick()}>Add</AddButton>
       </InfoBox>
     </Container>
   );
@@ -106,6 +106,7 @@ export const CardSearchResult = ({ details }) => {
 
 CardSearchResult.propTypes = {
   details: PropTypes.object,
+  onAddClick: PropTypes.func,
 };
 
 export default CardSearchResult;
