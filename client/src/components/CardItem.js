@@ -22,8 +22,9 @@ const ImageBox = styled.div`
   border-radius: 5px 5px 0 0;
 `;
 const Image = styled.img`
-  object-fit: cover;
+  object-fit: contain;
   height: 233px;
+  width: 330px;
 `;
 
 const InfoBox = styled.div`
@@ -35,10 +36,13 @@ const InfoBox = styled.div`
   background-color: ${colors.bgSecondary};
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-family: SF Pro Rounded Regular;
   font-size: 35px;
-  margin: 0 0 4px 18px;
+  margin: 0 18px 4px 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: ${colors.textPrimary};
 `;
 

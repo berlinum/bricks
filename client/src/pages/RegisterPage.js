@@ -5,7 +5,7 @@ import colors from '../utils/colors';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import LogoImg from '../assets/icons/logo.svg';
-import { useHttp } from '../hooks/http.hook';
+import { useHttp } from '../hooks/useHttp.hook';
 
 const LogoBox = styled.div`
   display: flex;

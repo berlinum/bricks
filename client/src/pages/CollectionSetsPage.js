@@ -37,23 +37,12 @@ const CollectionSetsPage = () => {
       <MainContainer>
         <NavLink to="/search">
           <FloatingButton
-            to="/search"
             value={add}
             onButtonClick={() => {
               setAdd(!add);
             }}
           />
         </NavLink>
-        <CardItem
-          details={{
-            id: 123,
-            title: 'London Bus',
-            pieces: 1686,
-            item: 10258,
-            year: 2017,
-            img: Img,
-          }}
-        />
         <CardItem
           details={{
             id: 123,
