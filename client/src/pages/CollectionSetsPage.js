@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Header from '../components/Header';
 import styled from '@emotion/styled';
 import CardItem from '../components/CardItem';
-import Img from '../assets/img/Bus.jpg';
 import NavTop from '../components/NavTop';
 import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
+import { useHttp } from '../hooks/useHttp.hook';
 
 const MainContainer = styled.main`
   display: flex;
@@ -19,6 +19,21 @@ const MainContainer = styled.main`
 const CollectionSetsPage = () => {
   const [active, setActive] = useState('My Sets');
   const [add, setAdd] = useState(false);
+  const [collection, setCollection] = useState([]);
+  const { request } = useHttp();
+
+  const getCollection = useCallback(async () => {
+    try {
+      const data = await request('/api/collection/mysets/all', 'GET', null);
+      setCollection(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [request]);
+
+  useEffect(() => {
+    getCollection();
+  }, [getCollection]);
 
   return (
     <>
@@ -43,36 +58,19 @@ const CollectionSetsPage = () => {
             }}
           />
         </NavLink>
-        <CardItem
-          details={{
-            id: 123,
-            title: 'London Bus',
-            pieces: 1686,
-            item: 10258,
-            year: 2017,
-            img: Img,
-          }}
-        />
-        <CardItem
-          details={{
-            id: 123,
-            title: 'London Bus',
-            pieces: 1686,
-            item: 10258,
-            year: 2017,
-            img: Img,
-          }}
-        />
-        <CardItem
-          details={{
-            id: 123,
-            title: 'London Bus',
-            pieces: 1686,
-            item: 10258,
-            year: 2017,
-            img: Img,
-          }}
-        />
+        {collection.map((set) => (
+          <CardItem
+            key={set.set_num}
+            details={{
+              id: set.set_num,
+              title: set.name,
+              item: set.set_num,
+              year: set.year,
+              pieces: set.num_parts,
+              img: set.set_img_url,
+            }}
+          />
+        ))}
       </MainContainer>
     </>
   );
