@@ -37,16 +37,16 @@ const SearchPage = () => {
     }
   };
 
-  const getSets = async () => {
+  const getSet = async () => {
     try {
-      const data = await request(`/api/search/sets?q=${throttledValue}`);
+      const data = await request(`/api/search/set?q=${throttledValue}`);
       return data;
     } catch (error) {
       console.error(error);
     }
   };
 
-  const { status, data, error } = useQuery(throttledValue, getSets);
+  const { status, data, error } = useQuery(throttledValue, getSet);
   if (status === 'loading')
     return (
       <>

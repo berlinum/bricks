@@ -19,21 +19,21 @@ const MainContainer = styled.main`
 const CollectionSetsPage = () => {
   const [active, setActive] = useState('My Sets');
   const [add, setAdd] = useState(false);
-  const [collection, setCollection] = useState([]);
+  const [setsCollection, setSetsCollection] = useState([]);
   const { request } = useHttp();
 
-  const getCollection = useCallback(async () => {
+  const getSetsCollection = useCallback(async () => {
     try {
       const data = await request('/api/collection/mysets/all', 'GET', null);
-      setCollection(data);
+      setSetsCollection(data);
     } catch (error) {
       console.error(error);
     }
   }, [request]);
 
   useEffect(() => {
-    getCollection();
-  }, [getCollection]);
+    getSetsCollection();
+  }, [getSetsCollection]);
 
   return (
     <>
@@ -58,7 +58,7 @@ const CollectionSetsPage = () => {
             }}
           />
         </NavLink>
-        {collection.map((set) => (
+        {setsCollection.map((set) => (
           <CardItem
             key={set.set_num}
             details={{

@@ -23,7 +23,7 @@ const ImageBox = styled.div`
 const Image = styled.img`
   object-fit: contain;
   height: 233px;
-  width: 330px;
+  width: 300px;
 `;
 
 const InfoBox = styled.div`
