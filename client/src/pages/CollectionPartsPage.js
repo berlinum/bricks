@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Header from '../components/Header';
 import styled from '@emotion/styled';
 import CardBrick from '../components/CardBrick';
-import Img from '../assets/img/Brick.jpeg';
 import NavTop from '../components/NavTop';
+import { useHttp } from '../hooks/useHttp.hook';
 
 const MainContainer = styled.main`
   display: flex;
@@ -16,6 +16,22 @@ const MainContainer = styled.main`
 
 const CollectionPartsPage = () => {
   const [active, setActive] = useState('My Parts');
+  const [partsCollection, setPartsCollection] = useState([]);
+  const { request } = useHttp();
+
+  const getPartsCollection = useCallback(async () => {
+    try {
+      const data = await request('/api/collection/myparts/all', 'GET', null);
+      setPartsCollection(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [request]);
+
+  useEffect(() => {
+    getPartsCollection();
+  }, [getPartsCollection]);
+
   return (
     <>
       <Header title="Collection" />
@@ -31,56 +47,18 @@ const CollectionPartsPage = () => {
         onTabClick={(page) => setActive(page)}
       />
       <MainContainer>
-        <CardBrick
-          details={{
-            id: 123,
-            title: 'Brick 2X2',
-            element: 300323,
-            color: 'Bright Blue',
-            counter: 100,
-            img: Img,
-          }}
-        />
-        <CardBrick
-          details={{
-            id: 123,
-            title: 'Brick 2X2',
-            element: 300323,
-            color: 'Bright Blue',
-            counter: 100,
-            img: Img,
-          }}
-        />
-        <CardBrick
-          details={{
-            id: 123,
-            title: 'Brick 2X2',
-            element: 300323,
-            color: 'Bright Blue',
-            counter: 100,
-            img: Img,
-          }}
-        />
-        <CardBrick
-          details={{
-            id: 123,
-            title: 'Brick 2X2',
-            element: 300323,
-            color: 'Bright Blue',
-            counter: 100,
-            img: Img,
-          }}
-        />
-        <CardBrick
-          details={{
-            id: 123,
-            title: 'Brick 2X2',
-            element: 300323,
-            color: 'Bright Blue',
-            counter: 100,
-            img: Img,
-          }}
-        />
+        {partsCollection.map((part) => (
+          <CardBrick
+            key={part.set_num}
+            details={{
+              id: part.part_num,
+              title: part.name,
+              element: part.part_num,
+              color: part.color,
+              img: part.part_img_url,
+            }}
+          />
+        ))}
       </MainContainer>
     </>
   );
