@@ -6,6 +6,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import LogoImg from '../assets/icons/logo.svg';
 import { useHttp } from '../hooks/useHttp.hook';
+import cogoToast from 'cogo-toast';
 
 const LogoBox = styled.div`
   display: flex;
@@ -64,6 +65,16 @@ const Login = styled(Link)`
   margin: 5px;
 `;
 
+const Message = styled.span`
+  display: block;
+  color: ${colors.textPrimary};
+  font-family: SF Pro Display Regular;
+  font-size: 18px;
+  &:first-letter {
+    text-transform: capitalize;
+  }
+`;
+
 const RegisterPage = () => {
   const { loading, request } = useHttp();
   const [form, setForm] = useState({
@@ -80,7 +91,7 @@ const RegisterPage = () => {
   const registerHandler = async () => {
     const { name, email, password, confPassword } = form;
     if (password !== confPassword) {
-      alert("Passwords don't match");
+      cogoToast.warn(<Message>Passwords don&apos;t match</Message>);
     } else {
       try {
         const data = await request('/api/auth/register', 'POST', {
@@ -88,8 +99,15 @@ const RegisterPage = () => {
           email,
           password,
         });
-        alert(data.message);
+        cogoToast.success(<Message>{data.message}</Message>);
       } catch (error) {
+        cogoToast.warn(<Message>{error.message}</Message>, {
+          bar: {
+            size: '10px',
+            style: 'solid',
+            color: '#FFAE00',
+          },
+        });
         console.error(error);
       }
     }
