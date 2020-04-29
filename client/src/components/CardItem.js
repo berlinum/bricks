@@ -8,7 +8,6 @@ const Container = styled.article`
   flex-flow: column nowrap;
   width: 330px;
   margin: 15px;
-  height: 350px;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
@@ -24,14 +23,13 @@ const ImageBox = styled.div`
 const Image = styled.img`
   object-fit: contain;
   height: 233px;
-  width: 330px;
+  width: 300px;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  height: 107px;
   border-radius: 0 0 5px 5px;
   background-color: ${colors.bgSecondary};
 `;
@@ -39,7 +37,7 @@ const InfoBox = styled.div`
 const Title = styled.h2`
   font-family: SF Pro Rounded Regular;
   font-size: 35px;
-  margin: 0 18px 4px 18px;
+  margin: 10px 18px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -56,19 +54,18 @@ const InfoItem = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  margin: 6px 0 0 0;
+  margin: 0 3px 20px 3px;
   font-family: SF Pro Rounded Regular;
 `;
 
 const InfoData = styled.span`
   color: ${colors.textSecondary};
-  font-size: 20px;
+  font-size: 28px;
 `;
 
 const InfoLabel = styled.span`
   color: ${colors.textInfo};
-
-  font-size: 12px;
+  font-size: 18px;
 `;
 
 export const CardItem = ({ details }) => {
