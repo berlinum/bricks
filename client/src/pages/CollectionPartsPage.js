@@ -49,13 +49,14 @@ const CollectionPartsPage = () => {
       <MainContainer>
         {partsCollection.map((part) => (
           <CardBrick
-            key={part.set_num}
+            key={part.partIds[0].id}
             details={{
-              id: part.part_num,
-              title: part.name,
-              element: part.part_num,
-              color: part.color,
-              img: part.part_img_url,
+              id: part.partIds[0].id,
+              title: part.partIds[0].name,
+              element: part.partIds[0].part_num,
+              color: part.partIds[0].color,
+              img: part.partIds[0].part_img_url,
+              counter: part.total,
             }}
           />
         ))}
