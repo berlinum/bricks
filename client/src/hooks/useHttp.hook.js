@@ -19,7 +19,6 @@ export const useHttp = () => {
         });
         const data = await response.json();
         if (!response.ok) {
-          console.log(data.message);
           throw new Error(data.message || 'Something went wrong, try again!');
         }
         setLoading(false);
