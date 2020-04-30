@@ -7,8 +7,8 @@ const Card = styled.section`
   display: flex;
   flex-flow: column nowrap;
   height: 288px;
-  margin: 0 46px;
-  width: 100%;
+  min-width: 283px;
+  margin: 10px;
   justify-content: center;
   align-items: center;
   background: ${colors.bgLight};
@@ -48,7 +48,7 @@ const Divider = styled.div`
 
 const ProfileInfo = ({ counter }) => {
   return (
-    <Card key={counter.id}>
+    <Card>
       <Box>
         <Title>Sets</Title>
         <Counter>{counter.sets}</Counter>
