@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import styled from '@emotion/styled';
+import colors from '../utils/colors';
 import { useQuery } from 'react-query';
 import CardSearchResult from '../components/CardSearchResult';
 import { Loading } from '../assets/icons/Loading';
@@ -9,6 +10,7 @@ import SearchInput from '../components/SearchInput';
 import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
 import { useHttp } from '../hooks/useHttp.hook';
+import cogoToast from 'cogo-toast';
 
 const MainContainer = styled.main`
   display: flex;
@@ -17,6 +19,16 @@ const MainContainer = styled.main`
   align-items: center;
   justify-content: center;
   overflow: scroll;
+`;
+
+const Message = styled.span`
+  display: block;
+  color: ${colors.textPrimary};
+  font-family: SF Pro Display Regular;
+  font-size: 18px;
+  &:first-letter {
+    text-transform: capitalize;
+  }
 `;
 
 const SearchPage = () => {
@@ -31,7 +43,8 @@ const SearchPage = () => {
 
   const handleClick = async (set) => {
     try {
-      await request('/api/collection/mysets/add', 'POST', set);
+      const data = await request('/api/collection/mysets/add', 'POST', set);
+      cogoToast.success(<Message>{data.message}</Message>);
     } catch (error) {
       console.error(error);
     }
