@@ -59,7 +59,8 @@ const ProfilePage = () => {
         'GET',
         null
       );
-      setPartsCount(data);
+      const total = data.map((parts) => parts.total_sum);
+      setPartsCount(total);
     } catch (error) {
       console.error(error);
     }
@@ -73,7 +74,12 @@ const ProfilePage = () => {
       <Header title="Profile" />
       <MainContainer>
         <Avatar name={'Berlinum'} />
-        <ProfileInfo counter={{ sets: setsCount, parts: setsParts }} />
+        <ProfileInfo
+          counter={{
+            sets: setsCount,
+            parts: setsParts,
+          }}
+        />
         <ButtonDanger onClick={logoutHandler}>Log Out</ButtonDanger>
       </MainContainer>
     </>
