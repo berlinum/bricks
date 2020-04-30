@@ -91,10 +91,7 @@ const CardBrick = ({ details }) => {
           </InfoItem>
           <InfoItem>
             <InfoLabel>My Parts:</InfoLabel>
-            <InfoData>
-              100
-              {/* {details.counter} */}
-            </InfoData>
+            <InfoData>{details.counter}</InfoData>
           </InfoItem>
         </Info>
       </InfoBox>
