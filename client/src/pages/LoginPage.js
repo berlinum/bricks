@@ -7,7 +7,7 @@ import colors from '../utils/colors';
 import IntroAnimation from '../components/IntroAnimation';
 import { display } from '../utils/animations';
 import { useHttp } from '../hooks/useHttp.hook';
-import { AuthContext } from '../context/AuthContext';
+import AuthContext from '../context/AuthContext';
 import cogoToast from 'cogo-toast';
 
 const IntroContainer = styled.div`
