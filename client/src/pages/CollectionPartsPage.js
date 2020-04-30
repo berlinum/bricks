@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import CardBrick from '../components/CardBrick';
 import NavTop from '../components/NavTop';
 import { useHttp } from '../hooks/useHttp.hook';
+import { Loading } from '../assets/icons/Loading';
 
 const MainContainer = styled.main`
   display: flex;
@@ -17,7 +18,7 @@ const MainContainer = styled.main`
 const CollectionPartsPage = () => {
   const [active, setActive] = useState('My Parts');
   const [partsCollection, setPartsCollection] = useState([]);
-  const { request } = useHttp();
+  const { request, loading } = useHttp();
 
   const getPartsCollection = useCallback(async () => {
     try {
@@ -32,6 +33,27 @@ const CollectionPartsPage = () => {
     getPartsCollection();
   }, [getPartsCollection]);
 
+  if (loading) {
+    return (
+      <>
+        <Header title="Collection" />
+        <NavTop
+          links={[
+            { label: 'My Sets', navLink: '/collection/mysets' },
+            {
+              label: 'My Parts',
+              navLink: '/collection/myparts',
+            },
+          ]}
+          value={active}
+          onTabClick={(page) => setActive(page)}
+        />
+        <MainContainer>
+          <Loading />
+        </MainContainer>
+      </>
+    );
+  }
   return (
     <>
       <Header title="Collection" />

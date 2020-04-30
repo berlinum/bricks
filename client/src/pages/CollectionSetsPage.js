@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import Header from '../components/Header';
 import styled from '@emotion/styled';
 import CardItem from '../components/CardItem';
@@ -6,6 +6,7 @@ import NavTop from '../components/NavTop';
 import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
 import { useHttp } from '../hooks/useHttp.hook';
+import AuthContext from '../context/AuthContext';
 
 const MainContainer = styled.main`
   display: flex;
@@ -17,6 +18,7 @@ const MainContainer = styled.main`
 `;
 
 const CollectionSetsPage = () => {
+  const auth = useContext(AuthContext);
   const [active, setActive] = useState('My Sets');
   const [add, setAdd] = useState(false);
   const [setsCollection, setSetsCollection] = useState([]);
@@ -24,12 +26,14 @@ const CollectionSetsPage = () => {
 
   const getSetsCollection = useCallback(async () => {
     try {
-      const data = await request('/api/collection/mysets/all', 'GET', null);
+      const data = await request('/api/collection/mysets/all', 'GET', null, {
+        Authorization: `Bearer ${auth.token}`,
+      });
       setSetsCollection(data);
     } catch (error) {
       console.error(error);
     }
-  }, [request]);
+  }, [request, auth.token]);
 
   useEffect(() => {
     getSetsCollection();

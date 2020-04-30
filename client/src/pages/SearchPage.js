@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Header from '../components/Header';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
@@ -11,6 +11,7 @@ import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
 import { useHttp } from '../hooks/useHttp.hook';
 import cogoToast from 'cogo-toast';
+import AuthContext from '../context/AuthContext';
 
 const MainContainer = styled.main`
   display: flex;
@@ -32,6 +33,7 @@ const Message = styled.span`
 `;
 
 const SearchPage = () => {
+  const auth = useContext(AuthContext);
   const [value, setValue] = useState('');
   const [cancel, setCancel] = useState(true);
   const throttledValue = useThrottling(value, 700);
@@ -43,8 +45,12 @@ const SearchPage = () => {
 
   const handleClick = async (set) => {
     try {
-      const data = await request('/api/collection/mysets/add', 'POST', set);
-      cogoToast.success(<Message>{data.message}</Message>);
+      const data = await request('/api/collection/mysets/add', 'POST', set, {
+        Authorization: `Bearer ${auth.token}`,
+      });
+      cogoToast.loading(<Message>Add new set...</Message>).then(() => {
+        cogoToast.success(<Message>{data.message}</Message>);
+      });
     } catch (error) {
       console.error(error);
     }
