@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const auth = require('./lib/routes/auth');
 const search = require('./lib/routes/search');
 const collection = require('./lib/routes/collection');
+const profile = require('./lib/routes/profile');
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -19,6 +20,8 @@ app.use('/api/auth', auth);
 app.use('/api/search', search);
 
 app.use('/api/collection', collection);
+
+app.use('/api/collection', profile);
 
 // Serve any static files
 app.use(express.static(path.join(__dirname, 'client/build')));
