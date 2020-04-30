@@ -60,7 +60,7 @@ const ProfilePage = () => {
         null
       );
       const total = data.map((parts) => parts.total_sum);
-      setPartsCount(total);
+      setPartsCount(total.toLocaleString('de-DE'));
     } catch (error) {
       console.error(error);
     }
