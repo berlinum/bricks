@@ -62,19 +62,20 @@ const CollectionSetsPage = () => {
             }}
           />
         </NavLink>
-        {setsCollection.map((set) => (
-          <CardItem
-            key={set.set_num}
-            details={{
-              id: set.set_num,
-              title: set.name,
-              item: set.set_num,
-              year: set.year,
-              pieces: set.num_parts,
-              img: set.set_img_url,
-            }}
-          />
-        ))}
+        {setsCollection &&
+          setsCollection.map((set) => (
+            <CardItem
+              key={set.set_num}
+              details={{
+                id: set.set_num,
+                title: set.name,
+                item: set.set_num,
+                year: set.year,
+                pieces: set.num_parts,
+                img: set.set_img_url,
+              }}
+            />
+          ))}
       </MainContainer>
     </>
   );

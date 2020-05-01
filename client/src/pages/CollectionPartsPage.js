@@ -37,27 +37,6 @@ const CollectionPartsPage = () => {
     getPartsCollection();
   }, [getPartsCollection]);
 
-  if (loading) {
-    return (
-      <>
-        <Header title="Collection" />
-        <NavTop
-          links={[
-            { label: 'My Sets', navLink: '/collection/mysets' },
-            {
-              label: 'My Parts',
-              navLink: '/collection/myparts',
-            },
-          ]}
-          value={active}
-          onTabClick={(page) => setActive(page)}
-        />
-        <MainContainer>
-          <Loading />
-        </MainContainer>
-      </>
-    );
-  }
   return (
     <>
       <Header title="Collection" />
@@ -73,19 +52,21 @@ const CollectionPartsPage = () => {
         onTabClick={(page) => setActive(page)}
       />
       <MainContainer>
-        {partsCollection.map((part) => (
-          <CardBrick
-            key={part.partIds[0].id}
-            details={{
-              id: part.partIds[0].id,
-              title: part.partIds[0].name,
-              element: part.partIds[0].part_num,
-              color: part.partIds[0].color,
-              img: part.partIds[0].part_img_url,
-              counter: part.total,
-            }}
-          />
-        ))}
+        {loading && <Loading />}
+        {partsCollection &&
+          partsCollection.map((part) => (
+            <CardBrick
+              key={part.partIds[0].id}
+              details={{
+                id: part.partIds[0].id,
+                title: part.partIds[0].name,
+                element: part.partIds[0].part_num,
+                color: part.partIds[0].color,
+                img: part.partIds[0].part_img_url,
+                counter: part.total,
+              }}
+            />
+          ))}
       </MainContainer>
     </>
   );

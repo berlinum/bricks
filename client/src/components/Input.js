@@ -1,7 +1,9 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
 
-const Input = styled.input`
+const InputField = styled.input`
   margin: 10px 0;
   min-width: 280px;
   height: 46px;
@@ -22,4 +24,17 @@ const Input = styled.input`
   }
 `;
 
+const Input = ({ inputs }) => {
+  return inputs.map((input) => (
+    <InputField
+      key={input.name}
+      placeholder={input.placeholder}
+      name={input.name}
+      type={input.type}
+    />
+  ));
+};
+Input.propTypes = {
+  input: PropTypes.array,
+};
 export default Input;
