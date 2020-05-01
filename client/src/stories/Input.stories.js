@@ -24,12 +24,17 @@ const InputContainer = styled.div`
 export const LoginForm = () => (
   <InputContainer>
     <Input
-      inputs={[
-        { placeholder: 'Email', name: 'email', type: 'text' },
-        { placeholder: 'Password', name: 'password', type: 'password' },
-      ]}
-      onChange={action('user input')}
+      size="large"
+      placeholder="Email"
       value={text('')}
+      onChange={action('user input')}
+    />
+    <Input
+      size="large"
+      value={text('')}
+      type="password"
+      placeholder="Password"
+      onChange={action('user input')}
     />
   </InputContainer>
 );

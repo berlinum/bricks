@@ -114,18 +114,28 @@ const RegisterPage = () => {
         <Name>BRICKS</Name>
       </LogoBox>
       <Title>Create your account</Title>
-
       <Input
-        inputs={[
-          { placeholder: 'Name', name: 'name', type: 'text' },
-          { placeholder: 'Email', name: 'email', type: 'text' },
-          { placeholder: 'Password', name: 'password', type: 'password' },
-          {
-            placeholder: 'Confirm password',
-            name: 'confPassword',
-            type: 'password',
-          },
-        ]}
+        placeholder="Name"
+        name="name"
+        type="text"
+        onChange={changeHandler}
+      />
+      <Input
+        placeholder="Email"
+        name="email"
+        type="text"
+        onChange={changeHandler}
+      />
+      <Input
+        placeholder="Password"
+        name="password"
+        type="password"
+        onChange={changeHandler}
+      />
+      <Input
+        placeholder="Confirm password"
+        name="confPassword"
+        type="password"
         onChange={changeHandler}
       />
       <SignUpButton onClick={registerHandler} disabled={loading}>

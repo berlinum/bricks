@@ -93,10 +93,15 @@ const LoginPage = () => {
       <IntroAnimation />
       <InputContainer>
         <Input
-          inputs={[
-            { placeholder: 'Email', name: 'email', type: 'text' },
-            { placeholder: 'Password', name: 'password', type: 'password' },
-          ]}
+          placeholder="Email"
+          name="email"
+          type="text"
+          onChange={changeHandler}
+        />
+        <Input
+          placeholder="Password"
+          name="password"
+          type="password"
           onChange={changeHandler}
         />
         <LogInButton onClick={loginHandler} disabled={loading}>
