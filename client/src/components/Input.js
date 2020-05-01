@@ -35,6 +35,6 @@ const Input = ({ inputs }) => {
   ));
 };
 Input.propTypes = {
-  input: PropTypes.array,
+  inputs: PropTypes.array,
 };
 export default Input;
