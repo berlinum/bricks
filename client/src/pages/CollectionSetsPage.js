@@ -5,7 +5,7 @@ import CardItem from '../components/CardItem';
 import NavTop from '../components/NavTop';
 import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
-import { useHttp } from '../hooks/useHttp.hook';
+import useHttp from '../hooks/useHttp.hook';
 import AuthContext from '../context/AuthContext';
 
 const MainContainer = styled.main`

@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import styled from '@emotion/styled';
 import CardBrick from '../components/CardBrick';
 import NavTop from '../components/NavTop';
-import { useHttp } from '../hooks/useHttp.hook';
+import useHttp from '../hooks/useHttp.hook';
 import { Loading } from '../assets/icons/Loading';
 import AuthContext from '../context/AuthContext';
 

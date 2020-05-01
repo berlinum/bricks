@@ -7,7 +7,7 @@ import AuthContext from '../context/AuthContext';
 import colors from '../utils/colors';
 import Avatar from '../components/Avatar';
 import ProfileInfo from '../components/ProfileInfo';
-import { useHttp } from '../hooks/useHttp.hook';
+import useHttp from '../hooks/useHttp.hook';
 
 const MainContainer = styled.main`
   display: flex;
