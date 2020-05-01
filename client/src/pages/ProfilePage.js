@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import AuthContext from '../context/AuthContext';
 import colors from '../utils/colors';
 import Avatar from '../components/Avatar';
 import ProfileInfo from '../components/ProfileInfo';
@@ -40,13 +40,16 @@ const ProfilePage = () => {
       const data = await request(
         '/api/collection/mysets/all/count',
         'GET',
-        null
+        null,
+        {
+          Authorization: `Bearer ${auth.token}`,
+        }
       );
       setSetsCount(data);
     } catch (error) {
       console.error(error);
     }
-  }, [request]);
+  }, [request, auth.token]);
 
   useEffect(() => {
     getSetsCount();
@@ -57,14 +60,17 @@ const ProfilePage = () => {
       const data = await request(
         '/api/collection/myparts/all/count',
         'GET',
-        null
+        null,
+        {
+          Authorization: `Bearer ${auth.token}`,
+        }
       );
       const total = data.map((parts) => parts.total_sum);
       setPartsCount(total.toLocaleString('de-DE'));
     } catch (error) {
       console.error(error);
     }
-  }, [request]);
+  }, [request, auth.token]);
 
   useEffect(() => {
     getSetsParts();
