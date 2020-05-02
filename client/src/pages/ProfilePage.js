@@ -26,6 +26,7 @@ const ProfilePage = () => {
   const history = useHistory();
   const [setsCount, setSetsCount] = useState(null);
   const [setsParts, setPartsCount] = useState(null);
+  const [user, setUser] = useState(null);
   const { request } = useHttp();
   const auth = useContext(AuthContext);
 
@@ -75,11 +76,27 @@ const ProfilePage = () => {
   useEffect(() => {
     getSetsParts();
   }, [getSetsParts]);
+
+  const getUser = useCallback(async () => {
+    try {
+      const data = await request('/api/collection/profile', 'GET', null, {
+        Authorization: `Bearer ${auth.token}`,
+      });
+      setUser(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [request, auth.token]);
+
+  useEffect(() => {
+    getUser();
+  }, [getUser]);
+
   return (
     <>
       <Header title="Profile" />
       <MainContainer>
-        <Avatar name={'Berlinum'} />
+        <Avatar name={user} />
         <ProfileInfo
           counter={{
             sets: setsCount,
