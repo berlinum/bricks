@@ -1,11 +1,12 @@
 import React, { useState, useCallback, useEffect, useContext } from 'react';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import styled from '@emotion/styled';
 import CardBrick from '../components/CardBrick';
 import NavTop from '../components/NavTop';
 import useHttp from '../hooks/useHttp.hook';
 import { Loading } from '../assets/icons/Loading';
 import AuthContext from '../context/AuthContext';
+import Title from '../components/Header/Title';
 
 const MainContainer = styled.main`
   display: flex;
@@ -39,7 +40,9 @@ const CollectionPartsPage = () => {
 
   return (
     <>
-      <Header title="Collection" />
+      <Header>
+        <Title>Collection</Title>
+      </Header>
       <NavTop
         links={[
           { label: 'My Sets', navLink: '/collection/mysets' },

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
+import Title from '../components/Header/Title';
 
 const MainContainer = styled.main`
   display: flex;
@@ -14,7 +15,9 @@ const MainContainer = styled.main`
 const BuildItPage = () => {
   return (
     <>
-      <Header title="Build It!" />
+      <Header>
+        <Title>Build It!</Title>
+      </Header>
       <MainContainer>
         <h1>Build It</h1>
       </MainContainer>

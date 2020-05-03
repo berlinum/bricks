@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useContext } from 'react';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import styled from '@emotion/styled';
 import CardItem from '../components/CardItem';
 import NavTop from '../components/NavTop';
@@ -7,6 +7,7 @@ import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
 import useHttp from '../hooks/useHttp.hook';
 import AuthContext from '../context/AuthContext';
+import Title from '../components/Header/Title';
 
 const MainContainer = styled.main`
   display: flex;
@@ -41,7 +42,9 @@ const CollectionSetsPage = () => {
 
   return (
     <>
-      <Header title="Collection" />
+      <Header>
+        <Title>Collection</Title>
+      </Header>
       <NavTop
         links={[
           { label: 'My Sets', navLink: '/collection/mysets' },

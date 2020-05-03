@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
 import { useQuery } from 'react-query';
@@ -72,7 +72,7 @@ const SearchPage = () => {
   const { status, data, error } = useQuery(throttledValue, getSet);
   return (
     <>
-      <Header title="New Set" />
+      <Header>New Set</Header>
       <SearchInput value={value} onChange={changeHandler} />
       <MainContainer>
         <NavLink to="/collection/mysets">
