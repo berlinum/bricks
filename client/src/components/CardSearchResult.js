@@ -79,6 +79,9 @@ const InfoLabel = styled.span`
 const AddButton = styled(Button)`
   align-self: center;
   margin: 10px 20px;
+  &:active {
+    background-color: ${colors.systemAction};
+  }
 `;
 
 export const CardSearchResult = ({ details, onAddClick }) => {

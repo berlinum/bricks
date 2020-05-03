@@ -14,8 +14,8 @@ const Button = styled.button`
   color: ${colors.textButtons};
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
   &:focus {
-    outline: ${colors.systemAction};
-    box-shadow: 0 0 3px 2px ${colors.systemAction};
+    outline: none;
+    /* box-shadow: 0 0 3px 2px ${colors.systemAction}; */
   }
 `;
 

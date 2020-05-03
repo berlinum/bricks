@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Avatar from '../components/Avatar';
+import Photo from '../assets/img/avatar.jpeg';
 
 export default {
   title: 'Profile',
@@ -13,6 +14,6 @@ const Container = styled.div`
 
 export const ProfileAvatar = () => (
   <Container>
-    <Avatar name="Berlinum" />
+    <Avatar name="Berlinum" url={Photo} />
   </Container>
 );
