@@ -23,8 +23,8 @@ const Change = styled.img`
   position: absolute;
   width: 30px;
   height: 30px;
-  top: 70px;
-  left: 75px;
+  top: 72px;
+  left: 180px;
 `;
 const Input = styled.input`
   display: none;

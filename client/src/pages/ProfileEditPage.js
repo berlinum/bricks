@@ -13,6 +13,11 @@ import AuthContext from '../context/AuthContext';
 import { NavLink } from 'react-router-dom';
 import MainArea from '../components/MainArea';
 
+const Container = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
 const TitleCenter = styled(Title)`
   margin: 30px 0 0 0;
   text-align: center;
@@ -79,23 +84,25 @@ const ProfileEditPage = () => {
         <TitleCenter>Profile</TitleCenter>
       </Header>
       <MainArea>
-        <AvatarSmall
-          url={url}
-          onChange={(event) => setFile(event.target.files)}
-        />
-        <ProfileEdit
-          form={[
-            {
-              name: 'Name:',
-              type: 'text',
-              placeholder: user.name,
-            },
-            { name: 'Change email:', type: 'text', placeholder: user.email },
-            { name: 'New password:', type: 'password' },
-            { name: 'Confirm new password:', type: 'password' },
-          ]}
-        />
-        <Button>Save</Button>
+        <Container>
+          <AvatarSmall
+            url={url}
+            onChange={(event) => setFile(event.target.files)}
+          />
+          <ProfileEdit
+            form={[
+              {
+                name: 'Name:',
+                type: 'text',
+                placeholder: user.name,
+              },
+              { name: 'Change email:', type: 'text', placeholder: user.email },
+              { name: 'New password:', type: 'password' },
+              { name: 'Confirm new password:', type: 'password' },
+            ]}
+          />
+          <Button>Save</Button>
+        </Container>
       </MainArea>
     </>
   );

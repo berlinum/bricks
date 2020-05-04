@@ -14,6 +14,11 @@ import Label from '../components/Header/Label';
 import { NavLink } from 'react-router-dom';
 import MainArea from '../components/MainArea';
 
+const Container = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
 const ButtonDanger = styled(Button)`
   background-color: ${colors.bgDanger};
 `;
@@ -107,14 +112,16 @@ const ProfilePage = () => {
         </Link>
       </Header>
       <MainArea>
-        <Avatar name={user} url={url} />
-        <ProfileInfo
-          counter={{
-            sets: setsCount,
-            parts: setsParts,
-          }}
-        />
-        <ButtonDanger onClick={logoutHandler}>Log Out</ButtonDanger>
+        <Container>
+          <Avatar name={user} url={url} />
+          <ProfileInfo
+            counter={{
+              sets: setsCount,
+              parts: setsParts,
+            }}
+          />
+          <ButtonDanger onClick={logoutHandler}>Log Out</ButtonDanger>
+        </Container>
       </MainArea>
     </>
   );
