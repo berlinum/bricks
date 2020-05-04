@@ -14,6 +14,7 @@ import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
 import SearchPage from './pages/SearchPage';
 import ProfileEditPage from './pages/ProfileEditPage';
+import DetailPage from './pages/DetailPage';
 
 const Container = styled.div`
   display: flex;
@@ -59,6 +60,9 @@ export const AuthRoutes = ({ isAuthenticated }) => {
         <Switch>
           <Route path="/collection/mysets" exact>
             <CollectionSetsPage />
+          </Route>
+          <Route path="/collection/mysets/:setId">
+            <DetailPage />
           </Route>
           <Route path="/collection/myparts">
             <CollectionPartsPage />

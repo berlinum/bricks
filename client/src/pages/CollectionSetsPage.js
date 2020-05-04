@@ -8,6 +8,11 @@ import useHttp from '../hooks/useHttp.hook';
 import AuthContext from '../context/AuthContext';
 import Title from '../components/Header/Title';
 import MainArea from '../components/MainArea';
+import styled from '@emotion/styled';
+
+const Detail = styled(NavLink)`
+  text-decoration: none;
+`;
 
 const CollectionSetsPage = () => {
   const auth = useContext(AuthContext);
@@ -58,17 +63,18 @@ const CollectionSetsPage = () => {
         </NavLink>
         {setsCollection &&
           setsCollection.map((set) => (
-            <CardItem
-              key={set.set_num}
-              details={{
-                id: set.set_num,
-                title: set.name,
-                item: set.set_num,
-                year: set.year,
-                pieces: set.num_parts,
-                img: set.set_img_url,
-              }}
-            />
+            <Detail key={set._id} to={`/collection/mysets/${set._id}`}>
+              <CardItem
+                details={{
+                  id: set._id,
+                  title: set.name,
+                  item: set.set_num,
+                  year: set.year,
+                  pieces: set.num_parts,
+                  img: set.set_img_url,
+                }}
+              />
+            </Detail>
           ))}
       </MainArea>
     </>
