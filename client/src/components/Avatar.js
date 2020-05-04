@@ -7,6 +7,7 @@ const Container = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin: 20px 0 0 0;
 `;
 
 const Photo = styled.img`

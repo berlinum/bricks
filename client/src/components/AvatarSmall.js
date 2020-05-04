@@ -10,6 +10,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  margin: 20px 0 0 0;
 `;
 
 const Image = styled.img`
