@@ -1,16 +1,7 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Header from '../components/Header/Header';
 import Title from '../components/Header/Title';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import MainArea from '../components/MainArea';
 
 const WishlistPage = () => {
   return (
@@ -18,9 +9,9 @@ const WishlistPage = () => {
       <Header>
         <Title>Wishlist</Title>
       </Header>
-      <MainContainer>
+      <MainArea>
         <h1>Wishlist</h1>
-      </MainContainer>
+      </MainArea>
     </>
   );
 };

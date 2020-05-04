@@ -50,6 +50,7 @@ const RegisterLink = styled(Link)`
   color: ${colors.textActive};
   margin: 5px;
 `;
+
 const Message = styled.span`
   display: block;
   color: ${colors.textPrimary};

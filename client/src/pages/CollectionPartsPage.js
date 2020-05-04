@@ -1,21 +1,12 @@
 import React, { useState, useCallback, useEffect, useContext } from 'react';
 import Header from '../components/Header/Header';
-import styled from '@emotion/styled';
 import CardBrick from '../components/CardBrick';
 import NavTop from '../components/NavTop';
 import useHttp from '../hooks/useHttp.hook';
 import { Loading } from '../assets/icons/Loading';
 import AuthContext from '../context/AuthContext';
 import Title from '../components/Header/Title';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import MainArea from '../components/MainArea';
 
 const CollectionPartsPage = () => {
   const auth = useContext(AuthContext);
@@ -54,7 +45,7 @@ const CollectionPartsPage = () => {
         value={active}
         onTabClick={(page) => setActive(page)}
       />
-      <MainContainer>
+      <MainArea>
         {loading && <Loading />}
         {partsCollection &&
           partsCollection.map((part) => (
@@ -70,7 +61,7 @@ const CollectionPartsPage = () => {
               }}
             />
           ))}
-      </MainContainer>
+      </MainArea>
     </>
   );
 };

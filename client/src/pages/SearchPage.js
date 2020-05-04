@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Header from '../components/Header/Header';
+import Title from '../components/Header/Title';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
 import { useQuery } from 'react-query';
@@ -12,15 +13,7 @@ import { NavLink } from 'react-router-dom';
 import useHttp from '../hooks/useHttp.hook';
 import cogoToast from 'cogo-toast';
 import AuthContext from '../context/AuthContext';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import MainArea from '../components/MainArea';
 
 const Message = styled.span`
   display: block;
@@ -72,9 +65,11 @@ const SearchPage = () => {
   const { status, data, error } = useQuery(throttledValue, getSet);
   return (
     <>
-      <Header>New Set</Header>
+      <Header>
+        <Title>New Set</Title>
+      </Header>
       <SearchInput value={value} onChange={changeHandler} />
-      <MainContainer>
+      <MainArea>
         <NavLink to="/collection/mysets">
           <FloatingButton
             value={cancel}
@@ -102,7 +97,7 @@ const SearchPage = () => {
               onAddClick={() => handleClick(set)}
             />
           ))}
-      </MainContainer>
+      </MainArea>
     </>
   );
 };

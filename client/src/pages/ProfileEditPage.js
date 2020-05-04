@@ -11,15 +11,7 @@ import { Arrow } from '../assets/icons/Actions';
 import useHttp from '../hooks/useHttp.hook';
 import AuthContext from '../context/AuthContext';
 import { NavLink } from 'react-router-dom';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: column nowrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import MainArea from '../components/MainArea';
 
 const TitleCenter = styled(Title)`
   margin: 30px 0 0 0;
@@ -86,7 +78,7 @@ const ProfileEditPage = () => {
         </Link>
         <TitleCenter>Profile</TitleCenter>
       </Header>
-      <MainContainer>
+      <MainArea>
         <AvatarSmall
           url={url}
           onChange={(event) => setFile(event.target.files)}
@@ -104,7 +96,7 @@ const ProfileEditPage = () => {
           ]}
         />
         <Button>Save</Button>
-      </MainContainer>
+      </MainArea>
     </>
   );
 };

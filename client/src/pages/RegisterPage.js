@@ -34,6 +34,7 @@ const Title = styled.span`
   font-size: 23px;
   color: ${colors.textInfoDark};
 `;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;

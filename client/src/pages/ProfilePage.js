@@ -12,15 +12,7 @@ import Title from '../components/Header/Title';
 import Action from '../components/Header/Action';
 import Label from '../components/Header/Label';
 import { NavLink } from 'react-router-dom';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: column nowrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import MainArea from '../components/MainArea';
 
 const ButtonDanger = styled(Button)`
   background-color: ${colors.bgDanger};
@@ -114,7 +106,7 @@ const ProfilePage = () => {
           </Action>
         </Link>
       </Header>
-      <MainContainer>
+      <MainArea>
         <Avatar name={user} url={url} />
         <ProfileInfo
           counter={{
@@ -123,7 +115,7 @@ const ProfilePage = () => {
           }}
         />
         <ButtonDanger onClick={logoutHandler}>Log Out</ButtonDanger>
-      </MainContainer>
+      </MainArea>
     </>
   );
 };
