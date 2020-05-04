@@ -59,11 +59,16 @@ const InfoItem = styled.div`
   margin: 6px 3px 0 3px;
   font-family: SF Pro Rounded Regular;
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const InfoData = styled.span`
   color: ${colors.textSecondary};
   font-size: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 `;
 
 const InfoLabel = styled.span`
@@ -74,6 +79,9 @@ const InfoLabel = styled.span`
 const AddButton = styled(Button)`
   align-self: center;
   margin: 10px 20px;
+  &:active {
+    background-color: ${colors.systemAction};
+  }
 `;
 
 export const CardSearchResult = ({ details, onAddClick }) => {

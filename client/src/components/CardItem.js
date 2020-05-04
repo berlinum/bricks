@@ -53,19 +53,25 @@ const Info = styled.div`
 const InfoItem = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
+  flex: 1 1 0;
   margin: 0 3px 20px 3px;
   font-family: SF Pro Rounded Regular;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const InfoData = styled.span`
   color: ${colors.textSecondary};
   font-size: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 `;
 
 const InfoLabel = styled.span`
   color: ${colors.textInfo};
   font-size: 18px;
+  text-align: center;
 `;
 
 export const CardItem = ({ details }) => {

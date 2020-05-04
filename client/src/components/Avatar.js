@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import Img from '../assets/img/avatar.jpeg';
 
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin: 20px 0 0 0;
 `;
 
 const Photo = styled.img`
   height: 127px;
+  width: 127px;
   object-fit: cover;
   border-radius: 50%;
 `;
@@ -22,10 +23,10 @@ const Name = styled.span`
   font-size: 41px;
 `;
 
-export const Avatar = ({ name }) => {
+export const Avatar = ({ name, url }) => {
   return (
     <Container>
-      <Photo src={Img} />
+      <Photo src={url} />
       <Name>{name}</Name>
     </Container>
   );
@@ -33,6 +34,7 @@ export const Avatar = ({ name }) => {
 
 Avatar.propTypes = {
   name: PropTypes.string,
+  url: PropTypes.string,
 };
 
 export default Avatar;

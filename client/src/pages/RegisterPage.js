@@ -5,7 +5,7 @@ import colors from '../utils/colors';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import LogoImg from '../assets/icons/logo.svg';
-import { useHttp } from '../hooks/useHttp.hook';
+import useHttp from '../hooks/useHttp.hook';
 import cogoToast from 'cogo-toast';
 
 const LogoBox = styled.div`
@@ -34,6 +34,7 @@ const Title = styled.span`
   font-size: 23px;
   color: ${colors.textInfoDark};
 `;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -101,13 +102,7 @@ const RegisterPage = () => {
         });
         cogoToast.success(<Message>{data.message}</Message>);
       } catch (error) {
-        cogoToast.warn(<Message>{error.message}</Message>, {
-          bar: {
-            size: '10px',
-            style: 'solid',
-            color: '#FFAE00',
-          },
-        });
+        cogoToast.warn(<Message>{error.message}</Message>);
         console.error(error);
       }
     }

@@ -1,22 +1,16 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import Header from '../components/Header';
-import styled from '@emotion/styled';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
+import Header from '../components/Header/Header';
 import CardItem from '../components/CardItem';
 import NavTop from '../components/NavTop';
 import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
-import { useHttp } from '../hooks/useHttp.hook';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import useHttp from '../hooks/useHttp.hook';
+import AuthContext from '../context/AuthContext';
+import Title from '../components/Header/Title';
+import MainArea from '../components/MainArea';
 
 const CollectionSetsPage = () => {
+  const auth = useContext(AuthContext);
   const [active, setActive] = useState('My Sets');
   const [add, setAdd] = useState(false);
   const [setsCollection, setSetsCollection] = useState([]);
@@ -24,12 +18,14 @@ const CollectionSetsPage = () => {
 
   const getSetsCollection = useCallback(async () => {
     try {
-      const data = await request('/api/collection/mysets/all', 'GET', null);
+      const data = await request('/api/collection/mysets/all', 'GET', null, {
+        Authorization: `Bearer ${auth.token}`,
+      });
       setSetsCollection(data);
     } catch (error) {
       console.error(error);
     }
-  }, [request]);
+  }, [request, auth.token]);
 
   useEffect(() => {
     getSetsCollection();
@@ -37,7 +33,9 @@ const CollectionSetsPage = () => {
 
   return (
     <>
-      <Header title="Collection" />
+      <Header>
+        <Title>Collection</Title>
+      </Header>
       <NavTop
         links={[
           { label: 'My Sets', navLink: '/collection/mysets' },
@@ -49,7 +47,7 @@ const CollectionSetsPage = () => {
         value={active}
         onTabClick={(page) => setActive(page)}
       />
-      <MainContainer>
+      <MainArea>
         <NavLink to="/search">
           <FloatingButton
             value={add}
@@ -58,20 +56,21 @@ const CollectionSetsPage = () => {
             }}
           />
         </NavLink>
-        {setsCollection.map((set) => (
-          <CardItem
-            key={set.set_num}
-            details={{
-              id: set.set_num,
-              title: set.name,
-              item: set.set_num,
-              year: set.year,
-              pieces: set.num_parts,
-              img: set.set_img_url,
-            }}
-          />
-        ))}
-      </MainContainer>
+        {setsCollection &&
+          setsCollection.map((set) => (
+            <CardItem
+              key={set.set_num}
+              details={{
+                id: set.set_num,
+                title: set.name,
+                item: set.set_num,
+                year: set.year,
+                pieces: set.num_parts,
+                img: set.set_img_url,
+              }}
+            />
+          ))}
+      </MainArea>
     </>
   );
 };
