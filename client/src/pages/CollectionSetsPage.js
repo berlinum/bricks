@@ -1,21 +1,13 @@
 import React, { useState, useCallback, useEffect, useContext } from 'react';
-import Header from '../components/Header';
-import styled from '@emotion/styled';
+import Header from '../components/Header/Header';
 import CardItem from '../components/CardItem';
 import NavTop from '../components/NavTop';
 import FloatingButton from '../components/FloatingButton';
 import { NavLink } from 'react-router-dom';
 import useHttp from '../hooks/useHttp.hook';
 import AuthContext from '../context/AuthContext';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import Title from '../components/Header/Title';
+import MainArea from '../components/MainArea';
 
 const CollectionSetsPage = () => {
   const auth = useContext(AuthContext);
@@ -41,7 +33,9 @@ const CollectionSetsPage = () => {
 
   return (
     <>
-      <Header title="Collection" />
+      <Header>
+        <Title>Collection</Title>
+      </Header>
       <NavTop
         links={[
           { label: 'My Sets', navLink: '/collection/mysets' },
@@ -53,7 +47,7 @@ const CollectionSetsPage = () => {
         value={active}
         onTabClick={(page) => setActive(page)}
       />
-      <MainContainer>
+      <MainArea>
         <NavLink to="/search">
           <FloatingButton
             value={add}
@@ -76,7 +70,7 @@ const CollectionSetsPage = () => {
               }}
             />
           ))}
-      </MainContainer>
+      </MainArea>
     </>
   );
 };

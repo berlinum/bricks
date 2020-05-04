@@ -13,6 +13,7 @@ import BuildItPage from './pages/BuildItPage';
 import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
 import SearchPage from './pages/SearchPage';
+import ProfileEditPage from './pages/ProfileEditPage';
 
 const Container = styled.div`
   display: flex;
@@ -73,6 +74,9 @@ export const AuthRoutes = ({ isAuthenticated }) => {
           </Route>
           <Route path="/profile">
             <ProfilePage />
+          </Route>
+          <Route path="/edit">
+            <ProfileEditPage />
           </Route>
           <Redirect to="/collection/mysets" />
         </Switch>

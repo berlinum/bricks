@@ -1,23 +1,17 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import Header from '../components/Header';
-
-const MainContainer = styled.main`
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
-`;
+import Header from '../components/Header/Header';
+import Title from '../components/Header/Title';
+import MainArea from '../components/MainArea';
 
 const BuildItPage = () => {
   return (
     <>
-      <Header title="Build It!" />
-      <MainContainer>
+      <Header>
+        <Title>Build It!</Title>
+      </Header>
+      <MainArea>
         <h1>Build It</h1>
-      </MainContainer>
+      </MainArea>
     </>
   );
 };
