@@ -26,13 +26,11 @@ const Link = styled(NavLink)`
   z-index: 1;
   text-decoration: none;
 `;
-const ActionRight = styled.button`
+const ActionRight = styled(NavLink)`
   position: absolute;
+  z-index: 1;
   right: 0;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+  text-decoration: none;
 `;
 const DetailPage = () => {
   const auth = useContext(AuthContext);
@@ -80,7 +78,7 @@ const DetailPage = () => {
           </Action>
         </Link>
         <TitleCenter>Collection</TitleCenter>
-        <ActionRight>
+        <ActionRight to="/collection/mysets">
           <Action onClick={handleDelete}>
             <Delete />
           </Action>
