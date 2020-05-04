@@ -27,6 +27,7 @@ const Link = styled(NavLink)`
   position: absolute;
   z-index: 1;
   right: 0;
+  text-decoration: none;
 `;
 
 const ProfilePage = () => {

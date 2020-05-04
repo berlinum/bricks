@@ -26,6 +26,7 @@ const TitleCenter = styled(Title)`
 const Link = styled(NavLink)`
   position: absolute;
   z-index: 1;
+  text-decoration: none;
 `;
 
 const ProfileEditPage = () => {
