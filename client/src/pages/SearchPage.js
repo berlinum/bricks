@@ -43,11 +43,11 @@ const SearchPage = () => {
 
   const postSet = async (set) => {
     try {
-      cogoToast.loading(<Message>Add new set...</Message>).then(() => {
-        cogoToast.success(<Message>{data.message}</Message>);
-      });
       const data = await request('/api/collection/mysets/add', 'POST', set, {
         Authorization: `Bearer ${auth.token}`,
+      });
+      cogoToast.loading(<Message>Add new set...</Message>).then(() => {
+        cogoToast.success(<Message>{data.message}</Message>);
       });
     } catch (error) {
       console.error(error);
