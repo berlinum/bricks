@@ -26,12 +26,14 @@ const Link = styled(NavLink)`
   z-index: 1;
   text-decoration: none;
 `;
-const ActionRight = styled(NavLink)`
+
+const ActionRight = styled.a`
   position: absolute;
   z-index: 1;
   right: 0;
-  text-decoration: none;
+  cursor: pointer;
 `;
+
 const DetailPage = () => {
   const history = useHistory();
   const auth = useContext(AuthContext);
@@ -80,8 +82,8 @@ const DetailPage = () => {
           </Action>
         </Link>
         <TitleCenter>Collection</TitleCenter>
-        <ActionRight>
-          <Action onClick={handleDelete}>
+        <ActionRight onClick={handleDelete}>
+          <Action>
             <Delete />
           </Action>
         </ActionRight>
