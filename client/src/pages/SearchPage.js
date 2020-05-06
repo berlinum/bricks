@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import cogoToast from 'cogo-toast';
 import useHttp from '../hooks/useHttp.hook';
 import useThrottling from '../hooks/useThrottling.hook';
-import AuthContext from '../context/AuthContext';
 import Header from '../components/Header/Header';
 import Title from '../components/Header/Title';
 import MainArea from '../components/MainArea';
@@ -15,7 +14,6 @@ import FloatingButton from '../components/FloatingButton';
 import Message from '../components/Message';
 
 const SearchPage = () => {
-  const auth = useContext(AuthContext);
   const [value, setValue] = useState('');
   const [cancel, setCancel] = useState(true);
   const throttledValue = useThrottling(value, 700);
@@ -32,9 +30,7 @@ const SearchPage = () => {
 
   const postSet = async (set) => {
     try {
-      const data = await request('/api/collection/mysets/add', 'POST', set, {
-        Authorization: `Bearer ${auth.token}`,
-      });
+      const data = await request('/api/collection/mysets/add', 'POST', set);
       cogoToast.loading(<Message>Add new set...</Message>).then(() => {
         cogoToast.success(<Message>{data.message}</Message>);
       });

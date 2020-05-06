@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 import Header from '../components/Header/Header';
 import Title from '../components/Header/Title';
@@ -9,12 +9,6 @@ import { NavLink, useParams, useHistory } from 'react-router-dom';
 import MainArea from '../components/MainArea';
 import CardDetail from '../components/CardDetail';
 import useHttp from '../hooks/useHttp.hook';
-import AuthContext from '../context/AuthContext';
-
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-`;
 
 const TitleCenter = styled(Title)`
   margin: 30px 0 0 0;
@@ -36,16 +30,13 @@ const ActionRight = styled.a`
 
 const DetailPage = () => {
   const history = useHistory();
-  const auth = useContext(AuthContext);
   const [setDetails, setSetDetails] = useState([]);
   const { request } = useHttp();
   const { setId } = useParams();
 
   const handleDelete = async () => {
     try {
-      await request(`/api/collection/mysets/${setId}`, 'DELETE', null, {
-        Authorization: `Bearer ${auth.token}`,
-      });
+      await request(`/api/collection/mysets/${setId}`, 'DELETE', null);
       history.goBack();
     } catch (error) {
       console.error(error);
@@ -57,16 +48,13 @@ const DetailPage = () => {
       const data = await request(
         `/api/collection/mysets/${setId}`,
         'GET',
-        null,
-        {
-          Authorization: `Bearer ${auth.token}`,
-        }
+        null
       );
       setSetDetails(data);
     } catch (error) {
       console.error(error);
     }
-  }, [request, auth.token, setId]);
+  }, [request, setId]);
 
   useEffect(() => {
     getSetDetails();
@@ -89,17 +77,15 @@ const DetailPage = () => {
         </ActionRight>
       </Header>
       <MainArea>
-        <Container>
-          <CardDetail
-            details={{
-              id: setDetails._id,
-              title: setDetails.name,
-              subtitle: setDetails.theme,
-              description: setDetails.description,
-              img: setDetails.set_img_url,
-            }}
-          />
-        </Container>
+        <CardDetail
+          details={{
+            id: setDetails._id,
+            title: setDetails.name,
+            subtitle: setDetails.theme,
+            description: setDetails.description,
+            img: setDetails.set_img_url,
+          }}
+        />
       </MainArea>
     </>
   );

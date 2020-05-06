@@ -38,15 +38,13 @@ const ProfileEditPage = () => {
 
   const getUser = useCallback(async () => {
     try {
-      const data = await request('/api/collection/profile', 'GET', null, {
-        Authorization: `Bearer ${auth.token}`,
-      });
+      const data = await request('/api/collection/profile', 'GET', null);
       setUser(data);
       setUrl(data.img);
     } catch (error) {
       console.error(error);
     }
-  }, [request, auth.token]);
+  }, [request]);
 
   useEffect(() => {
     getUser();

@@ -69,13 +69,7 @@ const LoginPage = () => {
       const data = await request('/api/auth/login', 'POST', { ...form });
       auth.login(data.token, data.userId);
     } catch (error) {
-      cogoToast.warn(<Message>{error.message}</Message>, {
-        bar: {
-          size: '10px',
-          style: 'solid',
-          color: '#FFAE00',
-        },
-      });
+      cogoToast.warn(<Message>{error.message}</Message>);
       console.error(error);
     }
   };
