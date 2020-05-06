@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from '@emotion/styled';
+import cogoToast from 'cogo-toast';
+import useHttp from '../hooks/useHttp.hook';
 import colors from '../utils/colors';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import Message from '../components/Message';
 import LogoImg from '../assets/icons/logo.svg';
-import useHttp from '../hooks/useHttp.hook';
-import cogoToast from 'cogo-toast';
 
 const LogoBox = styled.div`
   display: flex;
@@ -66,17 +67,8 @@ const Login = styled(Link)`
   margin: 5px;
 `;
 
-const Message = styled.span`
-  display: block;
-  color: ${colors.textPrimary};
-  font-family: SF Pro Display Regular;
-  font-size: 18px;
-  &:first-letter {
-    text-transform: capitalize;
-  }
-`;
-
 const RegisterPage = () => {
+  const history = useHistory();
   const { loading, request } = useHttp();
   const [form, setForm] = useState({
     name: '',
@@ -101,6 +93,7 @@ const RegisterPage = () => {
           password,
         });
         cogoToast.success(<Message>{data.message}</Message>);
+        history.push('/auth/login');
       } catch (error) {
         cogoToast.warn(<Message>{error.message}</Message>);
         console.error(error);
