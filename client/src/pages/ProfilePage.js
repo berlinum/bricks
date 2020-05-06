@@ -75,8 +75,7 @@ const ProfilePage = () => {
           Authorization: `Bearer ${auth.token}`,
         }
       );
-      const total = data.map((parts) => parts.total_sum);
-      setPartsCount(total.toLocaleString('de-DE'));
+      setPartsCount(data.toLocaleString('de-DE'));
     } catch (error) {
       console.error(error);
     }
