@@ -1,14 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import colors from '../utils/colors';
-import IntroAnimation from '../components/IntroAnimation';
+import cogoToast from 'cogo-toast';
 import { display } from '../utils/animations';
+import colors from '../utils/colors';
 import useHttp from '../hooks/useHttp.hook';
 import AuthContext from '../context/AuthContext';
-import cogoToast from 'cogo-toast';
+import IntroAnimation from '../components/IntroAnimation';
+import Input from '../components/Input';
+import Button from '../components/Button';
+import Message from '../components/Message';
 
 const IntroContainer = styled.div`
   display: flex;
@@ -51,16 +52,6 @@ const RegisterLink = styled(Link)`
   margin: 5px;
 `;
 
-const Message = styled.span`
-  display: block;
-  color: ${colors.textPrimary};
-  font-family: SF Pro Display Regular;
-  font-size: 18px;
-  &:first-letter {
-    text-transform: capitalize;
-  }
-`;
-
 const LoginPage = () => {
   const auth = useContext(AuthContext);
   const { loading, request } = useHttp();
@@ -78,13 +69,7 @@ const LoginPage = () => {
       const data = await request('/api/auth/login', 'POST', { ...form });
       auth.login(data.token, data.userId);
     } catch (error) {
-      cogoToast.warn(<Message>{error.message}</Message>, {
-        bar: {
-          size: '10px',
-          style: 'solid',
-          color: '#FFAE00',
-        },
-      });
+      cogoToast.warn(<Message>{error.message}</Message>);
       console.error(error);
     }
   };

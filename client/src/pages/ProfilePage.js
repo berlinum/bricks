@@ -27,6 +27,7 @@ const Link = styled(NavLink)`
   position: absolute;
   z-index: 1;
   right: 0;
+  text-decoration: none;
 `;
 
 const ProfilePage = () => {
@@ -49,16 +50,13 @@ const ProfilePage = () => {
       const data = await request(
         '/api/collection/mysets/all/count',
         'GET',
-        null,
-        {
-          Authorization: `Bearer ${auth.token}`,
-        }
+        null
       );
       setSetsCount(data);
     } catch (error) {
       console.error(error);
     }
-  }, [request, auth.token]);
+  }, [request]);
 
   useEffect(() => {
     getSetsCount();
@@ -69,17 +67,13 @@ const ProfilePage = () => {
       const data = await request(
         '/api/collection/myparts/all/count',
         'GET',
-        null,
-        {
-          Authorization: `Bearer ${auth.token}`,
-        }
+        null
       );
-      const total = data.map((parts) => parts.total_sum);
-      setPartsCount(total.toLocaleString('de-DE'));
+      setPartsCount(data.toLocaleString('de-DE'));
     } catch (error) {
       console.error(error);
     }
-  }, [request, auth.token]);
+  }, [request]);
 
   useEffect(() => {
     getSetsParts();
@@ -87,15 +81,13 @@ const ProfilePage = () => {
 
   const getUser = useCallback(async () => {
     try {
-      const data = await request('/api/collection/profile', 'GET', null, {
-        Authorization: `Bearer ${auth.token}`,
-      });
+      const data = await request('/api/collection/profile', 'GET', null);
       setUser(data.name);
       setUrl(data.img);
     } catch (error) {
       console.error(error);
     }
-  }, [request, auth.token]);
+  }, [request]);
 
   useEffect(() => {
     getUser();

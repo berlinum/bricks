@@ -1,11 +1,20 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 
 const useHttp = () => {
+  const auth = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const request = useCallback(
-    async (url, method = 'GET', body = null, headers = {}) => {
+    async (
+      url,
+      method = 'GET',
+      body = null,
+      headers = {
+        Authorization: `Bearer ${auth.token}`,
+      }
+    ) => {
       setLoading(true);
       try {
         if (body) {
@@ -18,6 +27,11 @@ const useHttp = () => {
           headers,
         });
         const data = await response.json();
+
+        if (data.message === 'Authorization failed') {
+          auth.logout();
+        }
+
         if (!response.ok) {
           throw new Error(data.message || 'Something went wrong, try again!');
         }
@@ -29,7 +43,7 @@ const useHttp = () => {
         throw error;
       }
     },
-    []
+    [auth]
   );
   return { loading, request, error };
 };

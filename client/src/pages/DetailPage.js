@@ -1,0 +1,94 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import styled from '@emotion/styled';
+import Header from '../components/Header/Header';
+import Title from '../components/Header/Title';
+import Action from '../components/Header/Action';
+import Label from '../components/Header/Label';
+import { Arrow, Delete } from '../assets/icons/Actions';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
+import MainArea from '../components/MainArea';
+import CardDetail from '../components/CardDetail';
+import useHttp from '../hooks/useHttp.hook';
+
+const TitleCenter = styled(Title)`
+  margin: 30px 0 0 0;
+  text-align: center;
+`;
+
+const Link = styled(NavLink)`
+  position: absolute;
+  z-index: 1;
+  text-decoration: none;
+`;
+
+const ActionRight = styled.a`
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  cursor: pointer;
+`;
+
+const DetailPage = () => {
+  const history = useHistory();
+  const [setDetails, setSetDetails] = useState([]);
+  const { request } = useHttp();
+  const { setId } = useParams();
+
+  const handleDelete = async () => {
+    try {
+      await request(`/api/collection/mysets/${setId}`, 'DELETE', null);
+      history.goBack();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getSetDetails = useCallback(async () => {
+    try {
+      const data = await request(
+        `/api/collection/mysets/${setId}`,
+        'GET',
+        null
+      );
+      setSetDetails(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [request, setId]);
+
+  useEffect(() => {
+    getSetDetails();
+  }, [getSetDetails]);
+
+  return (
+    <>
+      <Header>
+        <Link to="/collection/mysets">
+          <Action>
+            <Arrow />
+            <Label>Back</Label>
+          </Action>
+        </Link>
+        <TitleCenter>Collection</TitleCenter>
+        <ActionRight onClick={handleDelete}>
+          <Action>
+            <Delete />
+          </Action>
+        </ActionRight>
+      </Header>
+      <MainArea>
+        <CardDetail
+          details={{
+            id: setDetails._id,
+            title: setDetails.name,
+            subtitle: setDetails.theme,
+            description: setDetails.description,
+            img: setDetails.set_img_url,
+          }}
+        />
+      </MainArea>
+    </>
+  );
+};
+
+export default DetailPage;
