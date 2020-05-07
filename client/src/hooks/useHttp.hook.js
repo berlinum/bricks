@@ -27,6 +27,11 @@ const useHttp = () => {
           headers,
         });
         const data = await response.json();
+
+        if (data.message === 'Authorization failed') {
+          auth.logout();
+        }
+
         if (!response.ok) {
           throw new Error(data.message || 'Something went wrong, try again!');
         }
@@ -38,7 +43,7 @@ const useHttp = () => {
         throw error;
       }
     },
-    [auth.token]
+    [auth]
   );
   return { loading, request, error };
 };
