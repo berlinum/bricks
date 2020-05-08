@@ -6,6 +6,7 @@ import colors from '../utils/colors';
 
 const AddButton = styled.button`
   position: absolute;
+  z-index: 10;
   width: 70px;
   height: 70px;
   border: none;
