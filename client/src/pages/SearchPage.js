@@ -47,7 +47,23 @@ const SearchPage = () => {
     postSet(set);
   };
 
-  const { status, data, error } = useQuery(throttledValue, getSet);
+  const { status, data, error, refetch } = useQuery(throttledValue, getSet);
+
+  const postSetToFavs = async (set) => {
+    try {
+      const data = await request('/api/collection/mysets/fav', 'POST', set);
+      await cogoToast.loading(<Message>Add new set to wishlist...</Message>);
+      cogoToast.success(<Message>{data.message}</Message>);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlePostSetToFavs = async (set) => {
+    await postSetToFavs(set);
+    await refetch();
+  };
+
   return (
     <>
       <Header>
@@ -68,7 +84,7 @@ const SearchPage = () => {
           : null}
         {status === 'loading' ? <Loading /> : null}
         {data &&
-          data.results.map((set) => (
+          data.map((set) => (
             <CardSearchResult
               key={set.set_num}
               details={{
@@ -79,7 +95,9 @@ const SearchPage = () => {
                 pieces: set.num_parts,
                 img: set.set_img_url,
               }}
+              isFav={set.isFav}
               onAddClick={() => handleClick(set)}
+              onFavClick={() => handlePostSetToFavs(set)}
             />
           ))}
       </MainArea>

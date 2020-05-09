@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Header from '../components/Header/Header';
 import CardBrick from '../components/CardBrick';
 import NavTop from '../components/NavTop';
@@ -6,24 +6,22 @@ import useHttp from '../hooks/useHttp.hook';
 import { Loading } from '../assets/icons/Loading';
 import Title from '../components/Header/Title';
 import MainArea from '../components/MainArea';
+import { useQuery } from 'react-query';
 
 const CollectionPartsPage = () => {
   const [active, setActive] = useState('My Parts');
-  const [partsCollection, setPartsCollection] = useState([]);
-  const { request, loading } = useHttp();
+  const { request } = useHttp();
 
   const getPartsCollection = useCallback(async () => {
     try {
       const data = await request('/api/collection/myparts/all', 'GET', null);
-      setPartsCollection(data);
+      return data;
     } catch (error) {
       console.error(error);
     }
   }, [request]);
 
-  useEffect(() => {
-    getPartsCollection();
-  }, [getPartsCollection]);
+  const { data, loading } = useQuery('partsCollection', getPartsCollection);
 
   return (
     <>
@@ -43,8 +41,8 @@ const CollectionPartsPage = () => {
       />
       <MainArea>
         {loading && <Loading />}
-        {partsCollection &&
-          partsCollection.map((part) => (
+        {data &&
+          data.map((part) => (
             <CardBrick
               key={part.partIds[0].id}
               details={{

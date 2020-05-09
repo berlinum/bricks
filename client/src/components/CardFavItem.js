@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import colors from '../utils/colors';
-import Button from '../components/Button';
 import FavoriteIcon from '../components/Favorite';
 
 const Container = styled.article`
-  position: relative;
   display: flex;
   flex-flow: column nowrap;
   width: 330px;
@@ -16,6 +14,7 @@ const Container = styled.article`
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
 `;
 const ImageBox = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,14 +25,13 @@ const ImageBox = styled.div`
 const Image = styled.img`
   object-fit: contain;
   height: 233px;
-  width: 330px;
+  width: 300px;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
-  padding-bottom: 20px;
+  justify-content: center;
   border-radius: 0 0 5px 5px;
   background-color: ${colors.bgSecondary};
 `;
@@ -50,7 +48,7 @@ const Title = styled.h2`
 
 const Info = styled.div`
   display: flex;
-  padding-bottom: 10px;
+  flex-flow: row nowrap;
   justify-content: space-around;
 `;
 
@@ -58,9 +56,8 @@ const InfoItem = styled.div`
   display: flex;
   flex-flow: column nowrap;
   flex: 1 1 0;
-  margin: 6px 3px 0 3px;
+  margin: 0 3px 20px 3px;
   font-family: SF Pro Rounded Regular;
-  text-align: center;
   overflow: hidden;
   white-space: nowrap;
 `;
@@ -76,55 +73,40 @@ const InfoData = styled.span`
 const InfoLabel = styled.span`
   color: ${colors.textInfo};
   font-size: 18px;
+  text-align: center;
 `;
 
-const AddButton = styled(Button)`
-  align-self: center;
-  margin: 10px 20px;
-  &:active {
-    background-color: ${colors.systemAction};
-  }
-`;
-
-export const CardSearchResult = ({
-  details,
-  onAddClick,
-  onFavClick,
-  isFav,
-}) => {
+export const CardItem = ({ details, onFavClick }) => {
   return (
     <Container>
-      <FavoriteIcon onFavClick={onFavClick} active={isFav} />
       <ImageBox>
+        <FavoriteIcon onFavClick={onFavClick} active={true} />
         <Image src={details.img} />
       </ImageBox>
       <InfoBox key={details.id}>
         <Title>{details.title}</Title>
         <Info>
           <InfoItem>
-            <InfoLabel>Pieces</InfoLabel>
             <InfoData>{details.pieces}</InfoData>
+            <InfoLabel>Pieces</InfoLabel>
           </InfoItem>
           <InfoItem>
-            <InfoLabel>#Item</InfoLabel>
             <InfoData>{details.item}</InfoData>
+            <InfoLabel>#Item</InfoLabel>
           </InfoItem>
           <InfoItem>
-            <InfoLabel>Year</InfoLabel>
             <InfoData>{details.year}</InfoData>
+            <InfoLabel>Year</InfoLabel>
           </InfoItem>
         </Info>
-        <AddButton onClick={() => onAddClick()}>Add</AddButton>
       </InfoBox>
     </Container>
   );
 };
 
-CardSearchResult.propTypes = {
+CardItem.propTypes = {
   details: PropTypes.object,
-  onAddClick: PropTypes.func,
   onFavClick: PropTypes.func,
-  isFav: PropTypes.bool,
 };
 
-export default CardSearchResult;
+export default CardItem;
