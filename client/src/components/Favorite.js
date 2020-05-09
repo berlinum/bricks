@@ -19,7 +19,6 @@ const FavoriteIcon = ({ onFavClick, active }) => (
 );
 
 FavoriteIcon.propTypes = {
-  id: PropTypes.string,
   active: PropTypes.bool,
   onFavClick: PropTypes.func,
 };
