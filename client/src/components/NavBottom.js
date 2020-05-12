@@ -16,7 +16,11 @@ const Nav = styled.nav`
   border-top: 1px solid rgba(116, 116, 116, 0.2);
 `;
 
-const NavItem = styled(NavLink)`
+const NavItem = styled(({ to, className, onClick, children }) => (
+  <NavLink to={to} className={className} onClick={onClick}>
+    {children}
+  </NavLink>
+))`
   display: flex;
   flex-flow: column nowrap;
   flex: 1;

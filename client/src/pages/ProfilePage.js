@@ -36,8 +36,13 @@ const ProfilePage = () => {
   const [setsParts, setPartsCount] = useState(null);
   const [user, setUser] = useState(null);
   const [url, setUrl] = useState(null);
-  const { request } = useHttp();
+  const { request, error, clearError } = useHttp();
   const auth = useContext(AuthContext);
+
+  useEffect(() => {
+    error && console.error(error);
+    clearError();
+  }, [error, clearError]);
 
   const logoutHandler = (event) => {
     event.preventDefault();
@@ -53,14 +58,10 @@ const ProfilePage = () => {
         null
       );
       setSetsCount(data);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   }, [request]);
-
-  useEffect(() => {
-    getSetsCount();
-  }, [getSetsCount]);
 
   const getSetsParts = useCallback(async () => {
     try {
@@ -70,28 +71,26 @@ const ProfilePage = () => {
         null
       );
       setPartsCount(data.toLocaleString('de-DE'));
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   }, [request]);
-
-  useEffect(() => {
-    getSetsParts();
-  }, [getSetsParts]);
 
   const getUser = useCallback(async () => {
     try {
       const data = await request('/api/collection/profile', 'GET', null);
       setUser(data.name);
       setUrl(data.img);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   }, [request]);
 
   useEffect(() => {
     getUser();
-  }, [getUser]);
+    getSetsParts();
+    getSetsCount();
+  }, [getUser, getSetsParts, getSetsCount]);
 
   return (
     <>

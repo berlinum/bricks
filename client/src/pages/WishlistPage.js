@@ -8,7 +8,12 @@ import { useQuery } from 'react-query';
 
 const WishlistPage = () => {
   const [favSets, setFavSets] = useState([]);
-  const { request } = useHttp();
+  const { request, error, clearError } = useHttp();
+
+  useEffect(() => {
+    error && console.error(error);
+    clearError();
+  }, [error, clearError]);
 
   const getFavSets = useCallback(async () => {
     try {
@@ -18,8 +23,8 @@ const WishlistPage = () => {
         null
       );
       setFavSets(data);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   }, [request]);
 
@@ -36,8 +41,8 @@ const WishlistPage = () => {
         'DELETE',
         null
       );
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   };
 
