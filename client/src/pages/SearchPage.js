@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import cogoToast from 'cogo-toast';
@@ -17,25 +17,29 @@ const SearchPage = () => {
   const [value, setValue] = useState('');
   const [cancel, setCancel] = useState(true);
   const throttledValue = useThrottling(value, 700);
-  const { request } = useHttp();
+  const { request, error, clearError } = useHttp();
+
+  useEffect(() => {
+    error && console.error(error);
+    clearError();
+  }, [error, clearError]);
 
   const getSet = async () => {
     try {
       const data = await request(`/api/search/set?q=${throttledValue}`);
       return data;
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   };
 
   const postSet = async (set) => {
     try {
       const data = await request('/api/collection/mysets/add', 'POST', set);
-      cogoToast.loading(<Message>Add new set...</Message>).then(() => {
-        cogoToast.success(<Message>{data.message}</Message>);
-      });
-    } catch (error) {
-      console.error(error);
+      await cogoToast.loading(<Message>Add new set...</Message>);
+      cogoToast.success(<Message>{data.message}</Message>);
+    } catch (e) {
+      // empty
     }
   };
 
@@ -47,15 +51,15 @@ const SearchPage = () => {
     postSet(set);
   };
 
-  const { status, data, error, refetch } = useQuery(throttledValue, getSet);
+  const { status, data, refetch } = useQuery(throttledValue, getSet);
 
   const postSetToFavs = async (set) => {
     try {
       const data = await request('/api/collection/mysets/fav', 'POST', set);
       await cogoToast.loading(<Message>Add new set to wishlist...</Message>);
       cogoToast.success(<Message>{data.message}</Message>);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   };
 
@@ -79,9 +83,6 @@ const SearchPage = () => {
             }}
           />
         </NavLink>
-        {status === 'error'
-          ? cogoToast.error(<Message>{error.message}</Message>)
-          : null}
         {status === 'loading' ? <Loading /> : null}
         {data &&
           data.map((set) => (

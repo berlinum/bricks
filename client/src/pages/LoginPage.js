@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import cogoToast from 'cogo-toast';
@@ -54,11 +54,16 @@ const RegisterLink = styled(Link)`
 
 const LoginPage = () => {
   const auth = useContext(AuthContext);
-  const { loading, request } = useHttp();
+  const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    error && cogoToast.warn(<Message>{error}</Message>);
+    clearError();
+  }, [error, clearError]);
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -68,9 +73,8 @@ const LoginPage = () => {
     try {
       const data = await request('/api/auth/login', 'POST', { ...form });
       auth.login(data.token, data.userId);
-    } catch (error) {
-      cogoToast.warn(<Message>{error.message}</Message>);
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   };
 

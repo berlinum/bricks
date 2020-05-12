@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from '@emotion/styled';
 import cogoToast from 'cogo-toast';
@@ -69,7 +69,7 @@ const Login = styled(Link)`
 
 const RegisterPage = () => {
   const history = useHistory();
-  const { loading, request } = useHttp();
+  const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -77,16 +77,21 @@ const RegisterPage = () => {
     confPassword: '',
   });
 
+  useEffect(() => {
+    error && cogoToast.warn(<Message>{error}</Message>);
+    clearError();
+  }, [error, clearError]);
+
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
   const registerHandler = async () => {
-    const { name, email, password, confPassword } = form;
-    if (password !== confPassword) {
-      cogoToast.warn(<Message>Passwords don&apos;t match</Message>);
-    } else {
-      try {
+    try {
+      const { name, email, password, confPassword } = form;
+      if (password !== confPassword) {
+        cogoToast.warn(<Message>Passwords don&apos;t match</Message>);
+      } else {
         const data = await request('/api/auth/register', 'POST', {
           name,
           email,
@@ -94,10 +99,9 @@ const RegisterPage = () => {
         });
         cogoToast.success(<Message>{data.message}</Message>);
         history.push('/auth/login');
-      } catch (error) {
-        cogoToast.warn(<Message>{error.message}</Message>);
-        console.error(error);
       }
+    } catch (error) {
+      // empty
     }
   };
 

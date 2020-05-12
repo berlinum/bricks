@@ -9,6 +9,9 @@ import { NavLink, useParams, useHistory } from 'react-router-dom';
 import MainArea from '../components/MainArea';
 import CardDetail from '../components/CardDetail';
 import useHttp from '../hooks/useHttp.hook';
+import { Loading } from '../assets/icons/Loading';
+import cogoToast from 'cogo-toast';
+import Message from '../components/Message';
 
 const TitleCenter = styled(Title)`
   margin: 30px 0 0 0;
@@ -31,15 +34,25 @@ const ActionRight = styled.a`
 const DetailPage = () => {
   const history = useHistory();
   const [setDetails, setSetDetails] = useState([]);
-  const { request } = useHttp();
+  const { request, loading, error, clearError } = useHttp();
   const { setId } = useParams();
+
+  useEffect(() => {
+    error && console.error(error);
+    clearError();
+  }, [error, clearError]);
 
   const handleDelete = async () => {
     try {
-      await request(`/api/collection/mysets/${setId}`, 'DELETE', null);
+      const delSet = await request(
+        `/api/collection/mysets/${setId}`,
+        'DELETE',
+        null
+      );
+      await cogoToast.error(<Message>{delSet}</Message>);
       history.goBack();
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   };
 
@@ -51,8 +64,8 @@ const DetailPage = () => {
         null
       );
       setSetDetails(data);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      // empty
     }
   }, [request, setId]);
 
@@ -77,6 +90,7 @@ const DetailPage = () => {
         </ActionRight>
       </Header>
       <MainArea>
+        {loading && <Loading />}
         <CardDetail
           details={{
             id: setDetails._id,

@@ -17,7 +17,11 @@ const NavItemContainer = styled.div`
   padding: 0 25px 0 25px;
 `;
 
-const NavItem = styled(NavLink)`
+const NavItem = styled(({ to, className, onClick, children }) => (
+  <NavLink to={to} className={className} onClick={onClick}>
+    {children}
+  </NavLink>
+))`
   display: flex;
   flex: 1;
   justify-content: center;

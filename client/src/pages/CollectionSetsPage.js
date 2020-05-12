@@ -8,6 +8,7 @@ import Title from '../components/Header/Title';
 import MainArea from '../components/MainArea';
 import FloatingButton from '../components/FloatingButton';
 import CardItem from '../components/CardItem';
+import { useQuery } from 'react-query';
 
 const Detail = styled(NavLink)`
   text-decoration: none;
@@ -16,21 +17,23 @@ const Detail = styled(NavLink)`
 const CollectionSetsPage = () => {
   const [active, setActive] = useState('My Sets');
   const [add, setAdd] = useState(false);
-  const [setsCollection, setSetsCollection] = useState([]);
-  const { request } = useHttp();
+  const { request, error, clearError } = useHttp();
+
+  useEffect(() => {
+    error && console.error(error);
+    clearError();
+  }, [error, clearError]);
 
   const getSetsCollection = useCallback(async () => {
     try {
       const data = await request('/api/collection/mysets/all', 'GET', null);
-      setSetsCollection(data);
-    } catch (error) {
-      console.error(error);
+      return data;
+    } catch (e) {
+      //empty
     }
   }, [request]);
 
-  useEffect(() => {
-    getSetsCollection();
-  }, [getSetsCollection]);
+  const { data } = useQuery('setsCollection', getSetsCollection);
 
   return (
     <>
@@ -57,8 +60,8 @@ const CollectionSetsPage = () => {
             }}
           />
         </NavLink>
-        {setsCollection &&
-          setsCollection.map((set) => (
+        {data &&
+          data.map((set) => (
             <Detail key={set._id} to={`/collection/mysets/${set._id}`}>
               <CardItem
                 details={{
