@@ -47,8 +47,9 @@ const SearchPage = () => {
     setValue(event.target.value);
   };
 
-  const handleClick = (set) => {
-    postSet(set);
+  const handleClick = async (set) => {
+    await postSet(set);
+    await refetch();
   };
 
   const { status, data, refetch } = useQuery(throttledValue, getSet);
@@ -97,6 +98,7 @@ const SearchPage = () => {
                 img: set.set_img_url,
               }}
               isFav={set.isFav}
+              isAdd={set.isAdd}
               onAddClick={() => handleClick(set)}
               onFavClick={() => handlePostSetToFavs(set)}
             />
