@@ -85,7 +85,7 @@ const AddButton = styled(Button)`
   align-self: center;
   margin: 10px 20px;
   background-color: ${(props) =>
-    props.added ? colors.textInactive : colors.textActive};
+    props.added ? colors.bgAction : colors.textActive};
   &:hover {
     background-color: ${(props) => (props.added ? null : colors.bgAction)};
   }
@@ -124,9 +124,24 @@ export const CardSearchResult = ({
             <InfoData>{details.year}</InfoData>
           </InfoItem>
         </Info>
-        <AddButton onClick={() => onAddClick()} added={isAdd} disabled={isAdd}>
-          Add
-        </AddButton>
+        {!isAdd && (
+          <AddButton
+            onClick={() => onAddClick()}
+            added={isAdd}
+            disabled={isAdd}
+          >
+            Add
+          </AddButton>
+        )}
+        {isAdd && (
+          <AddButton
+            onClick={() => onAddClick()}
+            added={isAdd}
+            disabled={isAdd}
+          >
+            Already added
+          </AddButton>
+        )}
       </InfoBox>
     </Container>
   );
