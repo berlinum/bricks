@@ -34,7 +34,6 @@ const ProfileEditPage = () => {
   const auth = useContext(AuthContext);
   const [user, setUser] = useState('');
   const [url, setUrl] = useState('');
-  const [file, setFile] = useState([]);
 
   const getUser = useCallback(async () => {
     try {
@@ -50,26 +49,25 @@ const ProfileEditPage = () => {
     getUser();
   }, [getUser]);
 
-  const postUpload = useCallback(async () => {
-    const formData = new FormData();
-    formData.append('file', file[0]);
-    try {
-      const cloudFile = await fetch('/api/upload/profile', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }).then((response) => response.json());
-      setUrl(cloudFile);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [file, auth.token]);
-
-  useEffect(() => {
-    postUpload();
-  }, [postUpload]);
+  const postUpload = useCallback(
+    async (file) => {
+      const formData = new FormData();
+      formData.append('file', file[0]);
+      try {
+        const cloudFile = await fetch('/api/upload/profile', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }).then((response) => response.json());
+        setUrl(cloudFile);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [auth.token]
+  );
 
   return (
     <>
@@ -86,7 +84,7 @@ const ProfileEditPage = () => {
         <Container>
           <AvatarSmall
             url={url}
-            onChange={(event) => setFile(event.target.files)}
+            onChange={(event) => postUpload(event.target.files)}
           />
           <ProfileEdit
             form={[
