@@ -49,7 +49,9 @@ const DetailPage = () => {
         'DELETE',
         null
       );
-      await cogoToast.error(<Message>{delSet}</Message>);
+      await cogoToast.error(<Message>{delSet}</Message>, {
+        hideAfter: 1,
+      });
       history.goBack();
     } catch (e) {
       // empty

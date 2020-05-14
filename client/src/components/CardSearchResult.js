@@ -14,7 +14,9 @@ const Container = styled.article`
   border: none;
   border-radius: 5px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+  opacity: ${(props) => (props.added ? 0.5 : 1)};
 `;
+
 const ImageBox = styled.div`
   display: flex;
   justify-content: center;
@@ -23,6 +25,7 @@ const ImageBox = styled.div`
   background-color: ${colors.bgWhite};
   border-radius: 5px 5px 0 0;
 `;
+
 const Image = styled.img`
   object-fit: contain;
   height: 233px;
@@ -81,9 +84,15 @@ const InfoLabel = styled.span`
 const AddButton = styled(Button)`
   align-self: center;
   margin: 10px 20px;
-  &:active {
-    background-color: ${colors.systemAction};
+  background-color: ${(props) =>
+    props.added ? colors.bgAction : colors.textActive};
+  &:hover {
+    background-color: ${(props) => (props.added ? null : colors.bgAction)};
   }
+  &:active {
+    background-color: ${colors.bgAction};
+  }
+  cursor: ${(props) => (props.added ? null : 'pointer')};
 `;
 
 export const CardSearchResult = ({
@@ -91,9 +100,10 @@ export const CardSearchResult = ({
   onAddClick,
   onFavClick,
   isFav,
+  isAdd,
 }) => {
   return (
-    <Container>
+    <Container added={isAdd}>
       <FavoriteIcon onFavClick={onFavClick} active={isFav} />
       <ImageBox>
         <Image src={details.img} />
@@ -114,7 +124,24 @@ export const CardSearchResult = ({
             <InfoData>{details.year}</InfoData>
           </InfoItem>
         </Info>
-        <AddButton onClick={() => onAddClick()}>Add</AddButton>
+        {!isAdd && (
+          <AddButton
+            onClick={() => onAddClick()}
+            added={isAdd}
+            disabled={isAdd}
+          >
+            Add
+          </AddButton>
+        )}
+        {isAdd && (
+          <AddButton
+            onClick={() => onAddClick()}
+            added={isAdd}
+            disabled={isAdd}
+          >
+            Already added
+          </AddButton>
+        )}
       </InfoBox>
     </Container>
   );
@@ -125,6 +152,7 @@ CardSearchResult.propTypes = {
   onAddClick: PropTypes.func,
   onFavClick: PropTypes.func,
   isFav: PropTypes.bool,
+  isAdd: PropTypes.bool,
 };
 
 export default CardSearchResult;
