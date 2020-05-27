@@ -6,10 +6,13 @@ import useHttp from '../hooks/useHttp.hook';
 import { Loading } from '../assets/icons/Loading';
 import Title from '../components/Header/Title';
 import MainArea from '../components/MainArea';
+import Welcome from '../components/Welcome';
 import { useQuery } from 'react-query';
+import { FloatingButton, Link } from '../components/FloatingButton';
 
 const CollectionPartsPage = () => {
   const [active, setActive] = useState('My Parts');
+  const [add, setAdd] = useState(false);
   const { request, error, clearError } = useHttp();
 
   useEffect(() => {
@@ -44,6 +47,20 @@ const CollectionPartsPage = () => {
         onTabClick={(page) => setActive(page)}
       />
       <MainArea>
+        <Link to="/search">
+          <FloatingButton
+            value={add}
+            onButtonClick={() => {
+              setAdd(!add);
+            }}
+          />
+        </Link>
+        {data && data.length === 0 ? (
+          <Welcome>
+            Nothing yet... <br />
+            Add your first set now!
+          </Welcome>
+        ) : null}
         {loading && <Loading />}
         {data && data.map((part) => <CardBrick key={part.id} details={part} />)}
       </MainArea>
