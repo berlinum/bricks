@@ -6,9 +6,10 @@ import useHttp from '../hooks/useHttp.hook';
 import Header from '../components/Header/Header';
 import Title from '../components/Header/Title';
 import MainArea from '../components/MainArea';
-import FloatingButton from '../components/FloatingButton';
+import { FloatingButton, Link } from '../components/FloatingButton';
 import CardItem from '../components/CardItem';
 import { useQuery } from 'react-query';
+import Welcome from '../components/Welcome';
 
 const Detail = styled(NavLink)`
   text-decoration: none;
@@ -52,14 +53,20 @@ const CollectionSetsPage = () => {
         onTabClick={(page) => setActive(page)}
       />
       <MainArea>
-        <NavLink to="/search">
+        <Link to="/search">
           <FloatingButton
             value={add}
             onButtonClick={() => {
               setAdd(!add);
             }}
           />
-        </NavLink>
+        </Link>
+        {data && data.length === 0 ? (
+          <Welcome>
+            Nothing yet... <br />
+            Add your first set now!
+          </Welcome>
+        ) : null}
         {data &&
           data.map((set) => (
             <Detail key={set._id} to={`/collection/mysets/${set._id}`}>

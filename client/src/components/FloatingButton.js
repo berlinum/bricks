@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Plus from '../assets/icons/whitePlus.svg';
 import colors from '../utils/colors';
+import { NavLink } from 'react-router-dom';
 
-const AddButton = styled.button`
+export const Link = styled(NavLink)`
   position: absolute;
   z-index: 10;
+  bottom: 100px;
+  right: 13px;
+`;
+
+const AddButton = styled.button`
   width: 70px;
   height: 70px;
   border: none;
@@ -21,11 +27,9 @@ const AddButton = styled.button`
   &:focus {
     outline: none;
   }
-  bottom: 100px;
-  right: 13px;
 `;
 
-const FloatingButton = ({ value, onButtonClick }) => (
+export const FloatingButton = ({ value, onButtonClick }) => (
   <AddButton active={value} onClick={() => onButtonClick()} />
 );
 
@@ -33,5 +37,3 @@ FloatingButton.propTypes = {
   value: PropTypes.bool,
   onButtonClick: PropTypes.func,
 };
-
-export default FloatingButton;

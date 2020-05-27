@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import cogoToast from 'cogo-toast';
 import useHttp from '../hooks/useHttp.hook';
@@ -10,7 +9,7 @@ import MainArea from '../components/MainArea';
 import CardSearchResult from '../components/CardSearchResult';
 import { Loading } from '../assets/icons/Loading';
 import SearchInput from '../components/SearchInput';
-import FloatingButton from '../components/FloatingButton';
+import { FloatingButton, Link } from '../components/FloatingButton';
 import Message from '../components/Message';
 
 const SearchPage = () => {
@@ -76,14 +75,14 @@ const SearchPage = () => {
       </Header>
       <SearchInput value={value} onChange={changeHandler} />
       <MainArea>
-        <NavLink to="/collection/mysets">
+        <Link to="/collection/mysets">
           <FloatingButton
             value={cancel}
             onButtonClick={() => {
               setCancel(!cancel);
             }}
           />
-        </NavLink>
+        </Link>
         {status === 'loading' ? <Loading /> : null}
         {data &&
           data.map((set) => (

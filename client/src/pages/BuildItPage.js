@@ -9,7 +9,8 @@ const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  font-family: SF Pro Rounded Regular;
+  font-family: SF Pro Display Thin;
+  font-size: 2rem;
   opacity: 0.4;
 `;
 
@@ -22,7 +23,7 @@ const BuildItPage = () => {
       <MainArea>
         <Container>
           <Under />
-          <h1>Under construction</h1>
+          <span>Under construction</span>
         </Container>
       </MainArea>
     </>
